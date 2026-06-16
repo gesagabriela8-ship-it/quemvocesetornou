@@ -604,6 +604,7 @@ function showResult(){
 
   cont.innerHTML = html;
   goTo('screen-result');
+  saveToSheets(userName, currentLevel.label, totalScore, profileKey);
 
   // Timer
   if(unlockedSteps === 0){
@@ -650,9 +651,16 @@ window.addEventListener('DOMContentLoaded', function(){
   if(dataSrc && heroImg) heroImg.src = dataSrc;
 });
 
-function saveToSheets(nome, resultado, pontos){
-  const url = 'https://script.google.com/macros/s/AKfycbytBHssOCliR7KJIpzsI2hQ9AgcTHeNnbP1H2NPpGA51bWPIaLTGjxkhToGUod0-g5flw/exec';
-  fetch(url+'?'+new URLSearchParams({nome,whatsapp:'',resultado,pontos:String(pontos),data:new Date().toLocaleString('pt-BR'),origem:'quem_voce_se_tornou'}).toString()).catch(()=>{});
+function saveToSheets(nome, nivel, pontos, perfil){
+  const url = 'https://script.google.com/macros/s/AKfycbxeomSlOGYsaQBSUI99czweYoNCAsCDYJ-V2Ju5gTvb12IBY3JYX9_PSvvRgyi3OTbm/exec';
+  fetch(url+'?'+new URLSearchParams({
+    nome: nome,
+    pontos: String(pontos),
+    nivel: nivel,
+    perfil: perfil,
+    data: new Date().toLocaleString('pt-BR'),
+    origem: 'quem_voce_se_tornou'
+  }).toString(), {mode:'no-cors'}).catch(()=>{});
 }
 </script>
 </body>
