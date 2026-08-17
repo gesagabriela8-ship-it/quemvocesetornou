@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quem Voce Se Tornou? - Dra. Aline Zanette</title>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1591330742623087');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1591330742623087&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -657,6 +674,12 @@ window.addEventListener('DOMContentLoaded', function(){
 });
 
 function saveToSheets(nome, nivel, pontos, perfil){
+  if(typeof fbq !== 'undefined'){
+    fbq('track', 'Lead', {
+      content_name: 'Quem Voce Se Tornou',
+      content_category: perfil
+    });
+  }
   const url = 'https://script.google.com/macros/s/AKfycbxeomSlOGYsaQBSUI99czweYoNCAsCDYJ-V2Ju5gTvb12IBY3JYX9_PSvvRgyi3OTbm/exec';
   fetch(url+'?'+new URLSearchParams({
     nome: nome,
