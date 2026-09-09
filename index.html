@@ -343,7 +343,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
         <p><strong>Você não receberá apenas uma pontuação.</strong><br>Você descobrirá o perfil emocional que sua historia ajudou a construir.</p>
       </div>
       <div class="hero-stats">
-        <div><span class="stat-num">55</span><span class="stat-label">Perguntas</span></div>
+        <div><span class="stat-num">20</span><span class="stat-label">Perguntas</span></div>
         <div><span class="stat-num">5min</span><span class="stat-label">Duracao</span></div>
         <div><span class="stat-num">15+</span><span class="stat-label">Perfis</span></div>
       </div>
@@ -358,7 +358,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
   <div class="capture-wrap">
     <div class="hero-badge" style="margin-bottom:20px">Antes de começar</div>
     <h2 class="capture-title">Como podemos te chamar?</h2>
-    <p class="capture-sub">Seu resultado será personalizado com o seu nome e entregue de forma imediata ao final das 55 perguntas..</p>
+    <p class="capture-sub">Seu resultado será personalizado com o seu nome e entregue de forma imediata ao final das 20 perguntas.</p>
     <div class="field"><input type="text" id="nameInput" placeholder="Seu primeiro nome" maxlength="30"></div>
     <div class="field"><input type="email" id="emailInput" placeholder="Seu melhor e-mail"></div>
     <button class="btn-gold" onclick="startTest()">Iniciar Avaliação</button>
@@ -369,7 +369,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 <!-- PERGUNTAS -->
 <div class="screen" id="screen-question">
   <div class="question-wrap">
-    <p class="progress-text" id="progressText">Pergunta 1 de 55</p>
+    <p class="progress-text" id="progressText">Pergunta 1 de 20</p>
     <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
     <div class="block-label" id="blockLabel">Bloco 1 — Sua Infância</div>
     <p class="question-text" id="questionText"></p>
@@ -437,99 +437,64 @@ const HOTMART_LINK = 'https://go.hotmart.com/X106366253K';
 
 // == PERGUNTAS ==
 const questions = [
-  // BLOCO 1 - Infancia (1-10)
+  // BLOCO 1 - Sua Infância (1-5)
   {block:'Bloco 1 - Sua Infância',text:'Você se sentia amada(o) pelos seus cuidadores principais?',options:[['Sempre',0],['Frequentemente',1],['As vezes',2],['Raramente',3],['Nunca',4]]},
-  {block:'Bloco 1 - Sua Infância',text:'Seu pai esteve emocionalmente presente durante sua infancia?',options:[['Sempre',0],['Na maior parte do tempo',1],['Parcialmente',2],['Quase nunca',3],['Nunca',4]]},
   {block:'Bloco 1 - Sua Infância',text:'Sua mãe costumava demonstrar afeto atraves de abracos, carinho e palavras positivas?',options:[['Muito frequentemente',0],['Frequentemente',1],['Algumas vezes',2],['Raramente',3],['Nunca',4]]},
-  {block:'Bloco 1 - Sua Infância',text:'Você cresceu na mesma casa durante a maior parte da infancia?',options:[['Sim',0],['Algumas mudancas',2],['Muitas mudancas',4]]},
-  {block:'Bloco 1 - Sua Infância',text:'Você precisou morar com pessoas diferentes ao longo da infancia?',options:[['Nunca',0],['Uma vez',1],['Algumas vezes',2],['Muitas vezes',4]]},
   {block:'Bloco 1 - Sua Infância',text:'Você sentia que podia confiar nos adultos responsaveis por voce?',options:[['Sempre',0],['Frequentemente',1],['As vezes',2],['Raramente',3],['Nunca',4]]},
   {block:'Bloco 1 - Sua Infância',text:'Havia muitas brigas dentro da sua casa?',options:[['Nunca',0],['Poucas',1],['Algumas',2],['Muitas',3],['Quase diariamente',4]]},
   {block:'Bloco 1 - Sua Infância',text:'Você sofreu agressões verbais na infancia?',options:[['Nunca',0],['Poucas vezes',1],['Algumas vezes',2],['Frequentemente',3],['Muito frequentemente',4]]},
-  {block:'Bloco 1 - Sua Infância',text:'Você sofreu agressões físicas na infancia?',options:[['Nunca',0],['Poucas vezes',2],['Algumas vezes',3],['Frequentemente',4]]},
-  {block:'Bloco 1 - Sua Infância',text:'Você sofreu algum tipo de abuso sexual durante a infancia ou adolescencia?',options:[['Nao',0],['Sim',4]]},
-  // BLOCO 2 - Como voce funciona hoje (11-20)
+  // BLOCO 2 - Como Você Funciona Hoje (6-10)
   {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você costuma sentir medo de ser abandonada(o)?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
   {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você se apega rapidamente as pessoas?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
-  {block:'Bloco 2 - Como Você Funciona Hoje',text:'Quando alguém se afasta, voce sofre mais do que gostaria?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
-  {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você costuma colocar as necessidades dos outros acima das suas?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
   {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você tem dificuldade para dizer "nao"?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
-  {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você sente necessidade constante de aprovacao?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
-  {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você sente que precisa agradar para ser aceita(o)?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
-  {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você costuma desconfiar das intencoes das pessoas?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
   {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você evita criar vínculos profundos por medo de sofrer?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
   {block:'Bloco 2 - Como Você Funciona Hoje',text:'Você sente que ainda carrega dores da infancia?',options:[['Nao',0],['Pouco',1],['Algumas',2],['Bastante',3],['Muito',4]]},
-  // BLOCO 3 - Dependência emocional (21-35)
+  // BLOCO 3 - Como Você Se Relaciona - Dependência (11-15)
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente necessidade de receber mensagens frequentes para se sentir segura(o) em uma relacao?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Quando alguém demora para responder, voce costuma imaginar que fez algo errado?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você muda comportamentos seus para agradar pessoas importantes?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente dificuldade de encerrar relacoes mesmo quando esta sofrendo?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente que precisa ser necessária(o) para que gostem de voce?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você costuma se sentir responsável pela felicidade das pessoas proximas?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você aceita situações que a machucam para evitar conflitos?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente medo de que as pessoas descubram seus defeitos e a abandonem?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você se sente incomodada(o) quando alguem importante sai sem voce?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente que sua autoestima melhora ou piora conforme a atencao que recebe?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você já insistiu em uma relacao mesmo percebendo que ela nao estava saudavel?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você costuma pedir muitas confirmacoes de amor, amizade ou carinho?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente ciúmes com facilidade?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você tem dificuldade de ficar sozinha(o) por periodos prolongados?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente que sua felicidade depende muito das pessoas que ama?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  // BLOCO 3 continuacao - Hiperindependência (36-50)
+  // BLOCO 3 - Como Você Se Relaciona - Hiperindependência (16-18)
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você evita pedir ajuda mesmo quando precisa?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você prefere resolver tudo sozinha(o)?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Sempre',4]]},
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente desconforto quando alguem tenta cuidar de voce?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você costuma esconder seus problemas das pessoas proximas?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente que demonstrar vulnerabilidade e um sinal de fraqueza?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você tem dificuldade de confiar plenamente nas pessoas?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você prefere sofrer sozinha(o) do que incomodar alguem?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente necessidade de manter controle sobre tudo?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você evita depender emocionalmente das pessoas?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente dificuldade de receber elogios ou apoio?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Quando está mal, você tende a se afastar?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você acredita que, no final, so pode contar consigo mesma(o)?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você se sente desconfortável quando alguem conhece profundamente suas emocoes?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Você sente necessidade de parecer forte mesmo quando esta sofrendo?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Você já ouviu que parece fria(o), distante ou dificil de acessar emocionalmente?',options:[['Nunca',0],['Raramente',1],['As vezes',2],['Frequentemente',3],['Quase sempre',4]]},
-  // Perguntas de validacao (51-55)
+  // Perguntas de validacao (19-20)
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Quando você sofre, qual e sua tendencia?',options:[['Procuro apoio facilmente',0],['Depende da situacao',2],['Me isolo completamente',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Quando alguem importante se afasta:',options:[['Respeito o espaco',0],['Fico preocupada(o)',2],['Entro em sofrimento intenso',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'Qual frase mais se aproxima de você?',options:[['Posso contar com as pessoas',0],['Depende da pessoa',2],['Prefiro não depender de ninguem',4]]},
-  {block:'Bloco 3 - Como Você Se Relaciona',text:'O que mais combina com você?',options:[['Consigo equilibrar proximidade e autonomia',0],['Tenho alguma dificuldade nisso',2],['Ou me apego demais ou afasto as pessoas',4]]},
   {block:'Bloco 3 - Como Você Se Relaciona',text:'Qual situação descreve melhor seu padrao?',options:[['Amor sem ansiedade',0],['Alguma insegurança nos vínculos',2],['Oscilo entre precisar muito e nao querer precisar de ninguem',4]]}
 ];
 
 // == NIVEIS DE IMPACTO ==
 const levels = [
-  {min:0,max:40,badge:'badge-safe',label:'Base Emocional Segura',
+  {min:0,max:14,badge:'badge-safe',label:'Base Emocional Segura',
    diagnostico:`<p>Suas respostas indicam sinais de uma construção emocional relativamente estável, com poucos impactos negativos identificados ao longo da sua história.</p>
    <p>Você parece conseguir criar vínculos sem grandes dificuldades, confiar nas pessoas de forma razoável e manter sua identidade mesmo dentro dos relacionamentos. Isso é raro e importante - muitas pessoas chegam à vida adulta sem essa base.</p>
    <p>Uma base emocional segura não significa que você nunca sofreu. Significa que as experiências que você viveu, mesmo as difíceis, não comprometeram profundamente sua capacidade de confiar, de se vincular e de se sentir merecedora(o) de amor.</p>
    <p>Pessoas que chegam a esse resultado costumam ter tido ao menos uma figura de referência emocionalmente presente durante a infância - alguém que ofereceu consistência, afeto e segurança suficientes para que o cérebro aprendesse que vínculos podem ser seguros.</p>
    <p>Mas existe um ponto importante: mesmo quem tem uma base segura pode desenvolver padrões específicos em determinadas relações. A ansiedade pode aparecer com certos tipos de pessoas. A dificuldade de confiar pode surgir em contextos específicos. O medo de perder pode se ativar em momentos de maior vulnerabilidade.</p>
    <p>O próximo passo revela com precisão qual é o seu perfil emocional predominante - porque mesmo dentro de uma base segura existem nuances que fazem toda a diferença na qualidade dos seus relacionamentos.</p>`},
-  {min:41,max:80,badge:'badge-light',label:'Feridas Emocionais Leves',
+  {min:15,max:29,badge:'badge-light',label:'Feridas Emocionais Leves',
    diagnostico:`<p>Existem experiências da infância e da adolescência que ainda podem influenciar suas escolhas emocionais - de formas que talvez você nem sempre consiga identificar claramente.</p>
    <p>Você provavelmente consegue funcionar bem na maior parte do tempo. Mantém relacionamentos, desenvolve sua vida, realiza seus objetivos. Mas em momentos de maior vulnerabilidade emocional - quando alguém se afasta, quando a relação fica instável, quando sente que pode perder algo ou alguém importante - podem surgir reações que você mesmo(a) reconhece como desproporcionais ou difíceis de controlar.</p>
    <p>Talvez seja uma ansiedade que aparece quando a pessoa demora para responder. Talvez seja uma dificuldade de colocar limites em certas situações. Talvez seja uma tendência a minimizar suas próprias necessidades para manter a paz.</p>
    <p>Isso não é fraqueza. É o registro emocional de experiências que deixaram marcas - marcas que ainda estão sendo processadas, consciente ou inconscientemente.</p>
    <p>O que é importante entender é que essas marcas não definem quem você é. Elas mostram o que você aprendeu sobre relacionamentos quando ainda estava formando suas primeiras impressões sobre como o amor funciona.</p>
    <p>O próximo passo revela exatamente qual perfil emocional surgiu a partir dessas experiências e o que pode estar influenciando seus relacionamentos hoje - de formas que merecem atenção antes que se aprofundem.</p>`},
-  {min:81,max:120,badge:'badge-moderate',label:'Feridas Emocionais Moderadas',
+  {min:30,max:43,badge:'badge-moderate',label:'Feridas Emocionais Moderadas',
    diagnostico:`<p>Sua história provavelmente contribuiu para padrões atuais de insegurança, dependência emocional ou dificuldade de confiar que aparecem com frequência nos seus relacionamentos.</p>
    <p>Você pode perceber que alguns comportamentos seus - a forma como reage ao afastamento, a dificuldade de colocar limites, a necessidade de aprovação, a tendência de se adaptar demais - têm raízes que vão além da relação atual. Eles existiam antes dessa pessoa. E provavelmente existiram antes da anterior também.</p>
    <p>Experiências da infância que envolvem inconsistência afetiva, ausência emocional, instabilidade no lar ou figuras de referência que não souberam oferecer segurança tendem a criar padrões que se repetem nas relações adultas. O cérebro aprende uma mensagem sobre o que é normal em um relacionamento - e continua buscando confirmar essa mensagem.</p>
    <p>Reconhecer isso não é se vitimizar. Não é usar o passado como desculpa. É entender o mecanismo para poder, conscientemente, interrompê-lo.</p>
    <p>Porque enquanto você não compreende de onde vêm esses padrões, fica muito difícil mudá-los. Você pode trocar de relação, de cidade, de contexto - e os mesmos comportamentos aparecem. Com pessoas diferentes. Em circunstâncias diferentes. Como se você carregasse consigo um roteiro que continua se repetindo.</p>
    <p>O próximo passo detalha o seu perfil emocional específico e os padrões que podem estar operando sem que você perceba - e o que pode ser feito para começar a mudar isso.</p>`},
-  {min:121,max:160,badge:'badge-significant',label:'Feridas Emocionais Importantes',
+  {min:44,max:58,badge:'badge-significant',label:'Feridas Emocionais Importantes',
    diagnostico:`<p>Sua infância e adolescência parecem ter deixado marcas significativas que ainda influenciam seus relacionamentos, sua autoestima e sua tomada de decisões de formas que merecem atenção cuidadosa.</p>
    <p>Você provavelmente já percebeu que tem padrões que se repetem. Relações que seguem um roteiro parecido. Reações que você não consegue controlar mesmo quando entende racionalmente que estão fora de proporção. Uma parte sua que sabe o que deveria fazer - e outra parte que age diferente.</p>
    <p>Quando as experiências afetivas mais importantes da vida foram marcadas por abandono, inconsistência emocional, ausência de figuras seguras ou situações de violência - o cérebro aprende estratégias de proteção que, com o tempo, passam a interferir profundamente na capacidade de criar vínculos saudáveis.</p>
    <p>Essas estratégias fizeram sentido em algum momento. Elas protegeram você quando você mais precisava. O problema é que o cérebro continua usando essas mesmas estratégias mesmo quando a situação já é diferente - mesmo quando a pessoa à sua frente é diferente, quando o contexto é diferente, quando você já é diferente.</p>
    <p>Isso tem nome. Tem explicação. Tem caminho. Não é um defeito de caráter. Não é falta de amor próprio. É o resultado de experiências que deixaram registros emocionais profundos que ainda precisam ser compreendidos e processados.</p>
    <p>O próximo passo revela com precisão quais padrões estão operando - e o que pode estar mantendo você presa(o) nessa dinâmica mesmo quando você já reconhece que algo não está certo.</p>`},
-  {min:161,max:220,badge:'badge-high',label:'Impacto Emocional Elevado',
+  {min:59,max:80,badge:'badge-high',label:'Impacto Emocional Elevado',
    diagnostico:`<p>Seu resultado sugere que experiências precoces podem estar exercendo forte influência sobre sua forma de amar, confiar, se posicionar e construir relacionamentos - de uma forma que provavelmente já causou sofrimento significativo na sua vida.</p>
    <p>Neste nível, a história emocional não é apenas um pano de fundo. Ela pode estar ativamente moldando as escolhas que você faz nos relacionamentos - quem você escolhe, o quanto você tolera, o quanto você se permite receber, o quanto você acredita que merece.</p>
    <p>Você pode reconhecer em si mesma(o) padrões como: dificuldade de confiar mesmo quando há motivos reais para confiar; reações intensas a afastamentos que outros considerariam normais; necessidade constante de validação para se sentir bem; ou, pelo contrário, um isolamento emocional profundo que parece proteção mas é solidão.</p>
@@ -594,25 +559,26 @@ let timerInterval;
 let answers = [];
 let currentLevel = null;
 
-// Calcular perfil baseado nas respostas
+// Calcular perfil baseado nas respostas (20 perguntas)
+// Índices: 0-4=Infância | 5-9=Funciona Hoje | 10-14=Dependência | 15-17=Hiper | 18-19=Validação
 function calcProfile() {
-  // Ansioso: perguntas 11,12,13,16 (indices 10,11,12,15)
-  const ansioso = [10,11,12,15,21,22].reduce((s,i) => s + (answers[i]||0), 0);
-  // Evitativo: 18,19 (indices 17,18)
-  const evitativo = [17,18,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49].reduce((s,i) => s + (answers[i]||0), 0);
-  // Dependente: 14,15,16,17 (indices 13,14,15,16)
-  const dependente = [13,14,15,16,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34].reduce((s,i) => s + (answers[i]||0), 0);
-  // Hiperindependente
-  const hiper = [35,36,37,38,39,40,41,42,43,44,45,46,47,48,49].reduce((s,i) => s + (answers[i]||0), 0);
+  // Ansioso: medo de abandono (5), apego rápido (6), precisa de mensagens (10), felicidade depende (14)
+  const ansioso = [5,6,10,14].reduce((s,i) => s + (answers[i]||0), 0);
+  // Evitativo: evita vínculos (8), desconforto ao ser cuidado (16), isolamento (18)
+  const evitativo = [8,16,18].reduce((s,i) => s + (answers[i]||0), 0);
+  // Dependente: dificuldade dizer não (7), muda comportamento (11), não encerra (12), aceita machuca (13), felicidade depende (14)
+  const dependente = [7,11,12,13,14].reduce((s,i) => s + (answers[i]||0), 0);
+  // Hiperindependente: evita vínculos (8), evita ajuda (15), desconforto ao ser cuidado (16), precisa parecer forte (17), isolamento (18)
+  const hiper = [8,15,16,17,18].reduce((s,i) => s + (answers[i]||0), 0);
 
   // Seguro: baixa pontuacao em tudo
   const maxScore = Math.max(ansioso, evitativo, dependente, hiper);
 
   // Ambivalente: ansioso E hiper altos
-  if(ansioso >= 15 && hiper >= 15) return 'ambivalente';
-  if(dependente >= 20 && hiper >= 20) return 'ambivalente';
+  if(ansioso >= 8 && hiper >= 8) return 'ambivalente';
+  if(dependente >= 12 && hiper >= 8) return 'ambivalente';
 
-  if(maxScore < 8) return 'seguro';
+  if(maxScore < 4) return 'seguro';
   if(ansioso === maxScore) return 'ansioso';
   if(dependente === maxScore) return 'dependente';
   if(hiper === maxScore) return 'hiperindependente';
