@@ -802,12 +802,6 @@ window.addEventListener('DOMContentLoaded', function(){
 // e o toque de play/pause já vêm prontos da própria plataforma.
 
 function saveToSheets(nome, nivel, pontos, perfil){
-  if(typeof fbq !== 'undefined'){
-    fbq('track', 'Lead', {
-      content_name: 'Quem Você Se Tornou',
-      content_category: perfil
-    });
-  }
   const url = 'https://script.google.com/macros/s/AKfycbxeomSlOGYsaQBSUI99czweYoNCAsCDYJ-V2Ju5gTvb12IBY3JYX9_PSvvRgyi3OTbm/exec';
   fetch(url+'?'+new URLSearchParams({
     nome: nome,
