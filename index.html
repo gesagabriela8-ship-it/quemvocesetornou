@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quem Voce Se Tornou? - Dra. Aline Zanette</title>
+<title>Quem Você Se Tornou? - Dra. Aline Zanette</title>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -60,7 +60,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
 /* SCREENS */
 .screen{display:none;}
-.screen.active{display:block;}
+.screen.active{display:flex;flex-direction:column;justify-content:center;min-height:100vh;}
 
 /* CAPTURE */
 .capture-wrap{max-width:520px;margin:0 auto;padding:60px 24px;}
@@ -215,6 +215,10 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 @media(max-width:600px){
   .hero-stats{gap:20px;}
   .result-wrap,.capture-wrap,.question-wrap,.intro-wrap{padding:30px 16px 60px;}
+  .loading-wrap{padding:40px 20px;}
+  .hero-badge{letter-spacing:0.12em;padding:6px 14px;font-size:9px;}
+  .hero-content{padding:70px 20px 60px;}
+  .option{padding:15px 18px;font-size:13.5px;}
 }
 </style>
 </head>
@@ -328,16 +332,16 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
       <div class="hero-badge">Método P.O.S.E. · Dra. Aline Zanette</div>
       <p class="hero-eyebrow">Mapeamento da sua história emocional</p>
       <h1 class="hero-title">
-        <strong>Quem Voce</strong>
+        <strong>Quem Você</strong>
         <em>Se Tornou?</em>
       </h1>
-      <p class="hero-sub">Você nasceu assim ou aprendeu a ser assim? Descubra como sua infancia moldou sua forma de amar, confiar e se relacionar.</p>
+      <p class="hero-sub">Você nasceu assim ou aprendeu a ser assim? Descubra como sua infância moldou sua forma de amar, confiar e se relacionar.</p>
       <div class="hero-diferencial">
-        <p><strong>Você não receberá apenas uma pontuação.</strong><br>Você descobrirá o perfil emocional que sua historia ajudou a construir.</p>
+        <p><strong>Você não receberá apenas uma pontuação.</strong><br>Você descobrirá o perfil emocional que sua história ajudou a construir.</p>
       </div>
       <div class="hero-stats">
         <div><span class="stat-num">20</span><span class="stat-label">Perguntas</span></div>
-        <div><span class="stat-num">5min</span><span class="stat-label">Duracao</span></div>
+        <div><span class="stat-num">5min</span><span class="stat-label">Duração</span></div>
         <div><span class="stat-num">6</span><span class="stat-label">Perfis</span></div>
       </div>
       <button class="btn-hero" onclick="event.stopPropagation();goTo('screen-capture');" type="button" style="cursor:pointer;position:relative;z-index:9999">Descobrir Quem Me Tornei</button>
@@ -355,7 +359,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
     <div class="field"><input type="text" id="nameInput" placeholder="Seu primeiro nome" maxlength="30"></div>
     <div class="field"><input type="email" id="emailInput" placeholder="Seu melhor e-mail"></div>
     <button class="btn-gold" onclick="startTest()">Quero Começar</button>
-    <p class="privacy-note">Seus dados estão protegidos. Não compartilhamos nada..</p>
+    <p class="privacy-note">Seus dados estão protegidos. Não compartilhamos nada.</p>
   </div>
 </div>
 
@@ -394,7 +398,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
       </div>
     </div>
     <div class="loading-suspense">
-      <p>Seu perfil emocional está sendo identificado. O resultado pode surpreender você..</p>
+      <p>Seu perfil emocional está sendo identificado. O resultado pode surpreender você.</p>
     </div>
   </div>
 </div>
@@ -656,7 +660,7 @@ function showResult(){
     <div class="result-header">
       <p class="result-meta">Análise Concluída</p>
       <span class="result-badge ${currentLevel.badge}">${currentLevel.label}</span>
-      <h2 class="result-name">${userName},<br>seu resultado chegou..</h2>
+      <h2 class="result-name">${userName},<br>seu resultado chegou.</h2>
       <p class="result-score">Pontuação: ${totalScore} pontos</p>
     </div>
     <div class="unlocked-box">
@@ -714,7 +718,7 @@ function showResult(){
       <p style="font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Em breve - Lancamento</p>
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--white);margin-bottom:6px;">Método P.O.S.E.</h3>
       <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--gold);margin-bottom:16px;">Dra. Aline Zanette</p>
-      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 20px;">Um programa clínico para recuperar sua posicao emocional dentro dos relacionamentos - sem jogos, sem manipulação, sem dependência afetiva.</p>
+      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 20px;">Um programa clínico para recuperar sua posição emocional dentro dos relacionamentos - sem jogos, sem manipulação, sem dependência afetiva.</p>
       <div class="pose-letters">
         <div><div class="pose-letter">P</div><div class="pose-letter-label">Posicione-se</div></div>
         <div><div class="pose-letter">O</div><div class="pose-letter-label">Organize-se</div></div>
@@ -797,7 +801,7 @@ window.addEventListener('DOMContentLoaded', function(){
 function saveToSheets(nome, nivel, pontos, perfil){
   if(typeof fbq !== 'undefined'){
     fbq('track', 'Lead', {
-      content_name: 'Quem Voce Se Tornou',
+      content_name: 'Quem Você Se Tornou',
       content_category: perfil
     });
   }
