@@ -229,7 +229,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
     <div class="timer-text">Oferta expira em</div>
     <div class="timer-count" id="stickyCount">15:00</div>
   </div>
-  <button class="timer-btn" onclick="window.open('HOTMART_LINK','_blank')">Desbloquear -></button>
+  <button class="timer-btn" id="stickyTimerBtn" type="button">Desbloquear -></button>
 </div>
 
 <div class="notif-popup" id="notifPopup"><p><span id="notifName">Ana S.</span> acabou de descobrir seu perfil emocional</p></div>
@@ -430,7 +430,7 @@ let unlockedSteps = 0;
   } catch(e){}
 })();
 
-const HOTMART_LINK = 'https://go.hotmart.com/X106366253K';
+const HOTMART_LINK = 'https://pay.hotmart.com/X106366253K?off=d704mauj';
 
 // == PERGUNTAS ==
 const questions = [
@@ -792,6 +792,9 @@ window.addEventListener('DOMContentLoaded', function(){
   const heroImg = document.getElementById('heroImgEl');
   const dataSrc = document.getElementById('alinePhotoData').getAttribute('data-src');
   if(dataSrc && heroImg) heroImg.src = dataSrc;
+
+  const stickyBtn = document.getElementById('stickyTimerBtn');
+  if(stickyBtn) stickyBtn.addEventListener('click', function(){ window.open(HOTMART_LINK, '_blank'); });
 });
 
 // Player do mini VSL agora é o Vturb (script oficial carregado direto no HTML,
