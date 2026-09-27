@@ -66,8 +66,9 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 .hero-stats{display:flex;gap:32px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;}
 .stat-num{font-family:'Jost',sans-serif;font-size:32px;color:var(--gold);display:block;line-height:1;}
 .stat-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--white-dim);margin-top:4px;}
-.btn-hero{position:relative;z-index:200;background:var(--black);color:var(--gold);border:2px solid var(--gold);padding:16px 46px;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-bottom:14px;}
-.btn-hero:hover{background:var(--gold-light);}
+.btn-hero{position:relative;z-index:200;background:var(--black);color:var(--gold-light);border:2px solid var(--gold-light);padding:16px 46px;font-family:'Jost',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-bottom:14px;text-shadow:0 0 8px rgba(242,99,122,0.9),0 0 18px rgba(212,42,68,0.7);box-shadow:0 0 12px 2px rgba(212,42,68,0.55),0 0 30px 6px rgba(212,42,68,0.3),inset 0 0 10px rgba(212,42,68,0.15);animation:neonPulse 2.4s ease-in-out infinite;}
+.btn-hero:hover{background:rgba(212,42,68,0.15);box-shadow:0 0 22px 4px rgba(212,42,68,0.9),0 0 48px 10px rgba(212,42,68,0.55);}
+@keyframes neonPulse{0%,50%,100%{box-shadow:0 0 12px 2px rgba(212,42,68,0.55),0 0 30px 6px rgba(212,42,68,0.3);}25%,75%{box-shadow:0 0 22px 4px rgba(212,42,68,0.9),0 0 48px 10px rgba(212,42,68,0.55);}}
 .hero-note{font-size:11px;color:rgba(200,191,168,0.5);letter-spacing:0.1em;}
 
 /* SCREENS */
@@ -282,15 +283,19 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
     </div>
     <p class="video-caption">Dra. Aline Zanette · Médica, Saúde Mental · CRM 36587</p>
 
-    <p class="intro-quote reveal" style="margin-top:22px;">Você promete pra si mesmo que dessa vez vai ser diferente. Mas de novo vem o mesmo medo, a mesma desconfiança, a mesma vontade de se afastar antes que te afastem.</p>
+    <div class="reveal" style="text-align:center;margin:22px 0 8px;">
+      <button id="firstCtaBtn" class="btn-hero" onclick="event.stopPropagation();goTo('screen-hero');" type="button" style="cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.6s ease;">👉 Quero Entender Meu Padrão</button>
+    </div>
+
+    <p class="intro-quote reveal" style="margin-top:8px;">Você promete pra si mesmo que dessa vez vai ser diferente. Mas de novo vem o mesmo medo, a mesma desconfiança, a mesma vontade de se afastar antes que te afastem.</p>
 
     <div class="intro-section reveal">
-      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:520px;margin:0 auto;">Isso não é falta de sorte, nem falha sua. Ninguém nunca te ensinou a enxergar isso como um padrão, e todo padrão tem uma raiz. Talvez você já tenha lido artigo de autoajuda genérico ou seguido conselho de guru de internet, e mesmo assim continuou preso no mesmo ciclo. Isso não é falta de esforço seu. É o método errado.</p>
-      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:520px;margin:14px auto 0;">A Dra. Aline Zanette é médica, especialista em saúde mental, CRM 36587, não é guru nem influenciadora. Ela criou um método que mostra, de forma objetiva, por que você sofre nos relacionamentos.</p>
+      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:520px;margin:0 auto;">A Dra. Aline Zanette é médica, especialista em saúde mental, CRM 36587, não é guru nem influenciadora. Ela criou um método que mostra, de forma objetiva, por que você sofre nos relacionamentos.</p>
     </div>
 
     <div class="intro-section reveal">
-      <p class="intro-lead" style="margin-bottom:24px;">O Quem Você Se Tornou é um teste rápido que mapeia como você se apega, confia e se relaciona hoje, e revela qual desses perfis mais aparece em você:</p>
+      <p class="intro-eyebrow" style="margin-bottom:14px;">✨ Como funciona</p>
+      <p style="font-family:'Jost',sans-serif;font-size:18px;font-weight:400;color:var(--white);line-height:1.55;max-width:480px;margin:0 auto 26px;">O Quem Você Se Tornou é um teste rápido que mapeia como você se apega, confia e se relaciona hoje, e revela qual desses perfis mais aparece em você:</p>
       <p class="intro-eyebrow">✨ Perfis que você poderá descobrir</p>
       <div class="profile-tags reveal">
         <span class="profile-tag">Apego Ansioso</span>
@@ -303,7 +308,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
     </div>
 
     <div class="reveal" style="text-align:center;margin:22px 0 8px;">
-      <button id="firstCtaBtn" class="btn-hero" onclick="event.stopPropagation();goTo('screen-hero');" type="button" style="cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.6s ease;">👉 Quero Entender Meu Padrão</button>
+      <button class="btn-hero" onclick="event.stopPropagation();goTo('screen-hero');" type="button" style="cursor:pointer">👉 Quero Entender Meu Padrão</button>
     </div>
 
     <div class="intro-divider"></div>
