@@ -188,9 +188,14 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 .intro-lead{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;letter-spacing:0.01em;color:var(--white-dim);line-height:1.75;max-width:360px;margin:0 auto 30px;}
 .intro-authority{font-family:'Jost',sans-serif;font-size:17px;font-style:italic;font-weight:400;color:var(--gold-light);line-height:1.55;max-width:420px;margin:0 auto;}
 .intro-faq{list-style:none;margin:18px 0;max-width:560px;margin-left:auto;margin-right:auto;}
-.intro-faq li{padding:14px 0;border-bottom:1px solid rgba(201,168,76,0.08);text-align:left;}
-.intro-faq li strong{display:block;color:var(--white);font-size:14px;margin-bottom:6px;font-weight:500;}
-.intro-faq li span{font-size:13px;color:var(--white-dim);line-height:1.7;}
+.intro-faq li{padding:0;border-bottom:1px solid rgba(201,168,76,0.08);text-align:left;}
+.intro-faq details{padding:14px 0;}
+.intro-faq summary{display:flex;justify-content:space-between;align-items:center;gap:14px;color:var(--white);font-size:14px;font-weight:500;cursor:pointer;list-style:none;}
+.intro-faq summary::-webkit-details-marker{display:none;}
+.intro-faq summary::after{content:'+';color:var(--gold);font-size:19px;font-weight:300;line-height:1;flex-shrink:0;}
+.intro-faq details[open] summary::after{content:'\2212';}
+.intro-faq details[open] summary{margin-bottom:8px;}
+.intro-faq details span{display:block;font-size:13px;color:var(--white-dim);line-height:1.7;padding-right:30px;}
 .intro-section{margin-bottom:52px;}
 .intro-eyebrow{font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:500;line-height:1.6;}
 .intro-text{font-size:14px;color:var(--white-dim);line-height:1.9;}
@@ -271,7 +276,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
     <div class="intro-section">
       <p class="intro-eyebrow">✦ O padrão que se repete</p>
-      <p class="intro-quote">Você promete pra si mesma que dessa vez vai ser diferente. Mas de novo vem o mesmo medo, a mesma desconfiança, a mesma vontade de se afastar antes que te afastem.</p>
+      <p class="intro-quote">Você promete pra si mesmo que dessa vez vai ser diferente. Mas de novo vem o mesmo medo, a mesma desconfiança, a mesma vontade de se afastar antes que te afastem.</p>
       <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:520px;margin:0 auto;">Isso não é "falta de sorte no amor". É um padrão. E todo padrão tem uma raiz.</p>
     </div>
 
@@ -307,10 +312,10 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
     <div class="intro-section">
       <p class="intro-eyebrow">✨ Perguntas antes de começar</p>
       <ul class="intro-faq">
-        <li><strong>Isso não é só mais um teste de internet?</strong><span>Não. É baseado em padrões de apego, organizado por uma médica especialista em saúde mental. Não é um "qual personagem você é".</span></li>
-        <li><strong>Vou ser cobrada de novo depois?</strong><span>Não, é pagamento único, sem assinatura.</span></li>
-        <li><strong>Quanto tempo leva?</strong><span>Cerca de 3 minutos: o suficiente pra te dar um retrato real, sem ser cansativo.</span></li>
-        <li><strong>E se o resultado me incomodar?</strong><span>O objetivo não é rotular, é dar clareza. Reconhecer o padrão é o primeiro passo pra mudar ele.</span></li>
+        <li><details><summary>Isso não é só mais um teste de internet?</summary><span>Não. É baseado em padrões de apego, organizado por uma médica especialista em saúde mental. Não é um "qual personagem você é".</span></details></li>
+        <li><details><summary>Vou ser cobrada de novo depois?</summary><span>Não, é pagamento único, sem assinatura.</span></details></li>
+        <li><details><summary>Quanto tempo leva?</summary><span>Cerca de 3 minutos: o suficiente pra te dar um retrato real, sem ser cansativo.</span></details></li>
+        <li><details><summary>E se o resultado me incomodar?</summary><span>O objetivo não é rotular, é dar clareza. Reconhecer o padrão é o primeiro passo pra mudar ele.</span></details></li>
       </ul>
     </div>
 
