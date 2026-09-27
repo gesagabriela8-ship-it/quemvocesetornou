@@ -237,6 +237,21 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
   .hero-content{padding:70px 20px 60px;}
   .option{padding:15px 18px;font-size:13.5px;}
 }
+
+/* Reveal on scroll (fade-in) */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(.16,.8,.3,1),transform 0.8s cubic-bezier(.16,.8,.3,1);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+.profile-tags.reveal .profile-tag{opacity:0;transform:translateY(14px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.profile-tags.reveal.is-visible .profile-tag{opacity:1;transform:translateY(0);}
+.profile-tags.reveal.is-visible .profile-tag:nth-child(1){transition-delay:0.05s;}
+.profile-tags.reveal.is-visible .profile-tag:nth-child(2){transition-delay:0.1s;}
+.profile-tags.reveal.is-visible .profile-tag:nth-child(3){transition-delay:0.15s;}
+.profile-tags.reveal.is-visible .profile-tag:nth-child(4){transition-delay:0.2s;}
+.profile-tags.reveal.is-visible .profile-tag:nth-child(5){transition-delay:0.25s;}
+.profile-tags.reveal.is-visible .profile-tag:nth-child(6){transition-delay:0.3s;}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.profile-tags.reveal .profile-tag{opacity:1!important;transform:none!important;transition:none!important;}
+}
 </style>
 </head>
 <body>
@@ -255,26 +270,26 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 <div class="screen active" id="screen-intro">
   <div class="intro-wrap">
 
-    <div class="intro-top" style="margin-bottom:42px;">
+    <div class="intro-top reveal" style="margin-bottom:42px;">
       <div class="intro-badge">✨ Quem Você Se Tornou?™ ✨</div>
       <h1 class="intro-title">Você já percebeu<br>que sempre faz<br>a mesma coisa<br>quando tem medo de ser <em>abandonado</em>?</h1>
       <p class="intro-lead">Tem um padrão se repetindo nos seus relacionamentos. E não é coincidência.</p>
       <p class="intro-authority">Dra. Aline Zanette, médica especialista em saúde mental, criou um método capaz de mostrar por que você sofre nos relacionamentos. Assista abaixo e descubra em 3 minutos.</p>
     </div>
 
-    <div class="video-frame">
+    <div class="video-frame reveal">
       <vturb-smartplayer id="vid-6aae40e93be3e7a277da6dbf" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 116.66666666666667% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
       <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/af8f565d-5564-4b00-a70d-873f0cc72501/players/6aae40e93be3e7a277da6dbf/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
     <p class="video-caption">Dra. Aline Zanette · Médica, Saúde Mental · CRM 36587</p>
 
-    <div style="text-align:center;margin:22px 0 8px;">
+    <div class="reveal" style="text-align:center;margin:22px 0 8px;">
       <button class="btn-hero" onclick="event.stopPropagation();goTo('screen-hero');" type="button" style="cursor:pointer">👉 Quero Entender Meu Padrão</button>
     </div>
 
     <div class="intro-divider"></div>
 
-    <div class="intro-section">
+    <div class="intro-section reveal">
       <p class="intro-eyebrow">✦ O padrão que se repete</p>
       <p class="intro-quote">Você promete pra si mesmo que dessa vez vai ser diferente. Mas de novo vem o mesmo medo, a mesma desconfiança, a mesma vontade de se afastar antes que te afastem.</p>
       <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:520px;margin:0 auto;">Isso não é "falta de sorte no amor". É um padrão. E todo padrão tem uma raiz.</p>
@@ -282,10 +297,10 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
     <div class="intro-divider"></div>
 
-    <div class="intro-section">
+    <div class="intro-section reveal">
       <p class="intro-lead" style="margin-bottom:24px;">O Quem Você Se Tornou é um teste rápido que mapeia como você se apega, confia e se relaciona hoje, e revela qual desses perfis mais aparece em você:</p>
       <p class="intro-eyebrow">✨ Perfis que você poderá descobrir</p>
-      <div class="profile-tags">
+      <div class="profile-tags reveal">
         <span class="profile-tag">Apego Ansioso</span>
         <span class="profile-tag">Apego Evitativo</span>
         <span class="profile-tag">Apego Seguro</span>
@@ -297,7 +312,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
     <div class="intro-divider"></div>
 
-    <div class="intro-section">
+    <div class="intro-section reveal">
       <p class="intro-eyebrow">✨ O que muda quando você entende isso</p>
       <ul class="intro-list check">
         <li>Entender a raiz emocional do padrão que se repete, não só descrever o sintoma</li>
@@ -309,7 +324,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
     <div class="intro-divider"></div>
 
-    <div class="intro-section">
+    <div class="intro-section reveal">
       <p class="intro-eyebrow">✨ Perguntas antes de começar</p>
       <ul class="intro-faq">
         <li><details><summary>Isso não é só mais um teste de internet?</summary><span>Não. É baseado em padrões de apego, organizado por uma médica especialista em saúde mental. Não é um "qual personagem você é".</span></details></li>
@@ -321,7 +336,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
     <div class="intro-divider"></div>
 
-    <div class="intro-cta-box">
+    <div class="intro-cta-box reveal">
       <div class="intro-cta-stats">
         <span>6 perfis emocionais</span>
         <span>Resultado personalizado</span>
@@ -336,7 +351,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
     <p style="font-size:11px;color:rgba(200,191,168,0.4);text-align:center;max-width:440px;margin:28px auto 0;line-height:1.7;">Ferramenta de autoconhecimento. Não é diagnóstico médico ou psicológico e não substitui avaliação individual realizada por profissional habilitado.</p>
 
-    <div class="intro-footer">
+    <div class="intro-footer reveal">
       <p class="dra-name">Quem Você Se Tornou?™</p>
       <p>Desenvolvido por Dra. Aline Zanette<br>Médica · Saúde Mental · CRM 36587<br>@dra.alinezanette</p>
       <p style="margin-top:10px;">A sua saúde mental vale ouro.</p>
@@ -835,6 +850,26 @@ function saveToSheets(nome, nivel, pontos, perfil){
     origem: 'quem_voce_se_tornou'
   }).toString(), {mode:'no-cors'}).catch(()=>{});
 }
+
+// Reveal on scroll (fade-in)
+(function(){
+  var revealEls = document.querySelectorAll('.reveal');
+  if(!revealEls.length) return;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries, obs){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  revealEls.forEach(function(el){ observer.observe(el); });
+})();
 </script>
 </body>
 </html>
