@@ -303,7 +303,6 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
         <span class="profile-tag">Apego Seguro</span>
         <span class="profile-tag">Dependência Emocional</span>
         <span class="profile-tag">Hiperindependência Emocional</span>
-        <span class="profile-tag">Ambivalência Afetiva</span>
       </div>
     </div>
 
@@ -339,7 +338,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
     <div class="intro-cta-box reveal">
       <div class="intro-cta-stats">
-        <span>6 perfis emocionais</span>
+        <span>5 perfis emocionais</span>
         <span>Resultado personalizado</span>
         <span>Perfis híbridos exclusivos</span>
         <span>Análise detalhada</span>
@@ -612,13 +611,6 @@ const profiles = {
     text:`<p>Sua força pode ter surgido da necessidade. Talvez voce tenha aprendido cedo demais que precisava resolver tudo sozinho. Talvez tenha sido decepcionado repetidamente. Talvez tenha descoberto que confiar era arriscado.</p><p>Com o tempo, a autossuficiência virou protecao. O problema e que essa protecao pode se transformar em isolamento emocional. Voce pode ter dificuldade de receber ajuda. Pode sentir necessidade de controlar tudo.</p>`,
     habits:['Resolver tudo sem pedir ajuda','Ter dificuldade de confiar','Evitar demonstrar necessidades emocionais','Sentir que precisa ser forte o tempo todo','Assumir responsabilidades excessivas'],
     phrase:'"Se eu depender de alguem, vou me decepcionar."'
-  },
-  ambivalente:{
-    name:'Ambivalência Afetiva',
-    subtitle:'Voce deseja conexao, mas tem medo dela',
-    text:`<p>Uma parte sua deseja proximidade. Outra parte deseja protecao. Quando alguem se aproxima demais, voce sente vontade de se afastar. Quando alguém se afasta, voce sente vontade de correr atras.</p><p>Esse padrão geralmente se desenvolve quando as experiencias afetivas mais importantes da vida foram inconsistentes: momentos de carinho misturados com abandono, acolhimento misturado com rejeicao.</p>`,
-    habits:['Querer amor mas ter medo de se entregar','Oscilar entre dependencia e autossuficiencia','Desconfiar quando recebe amor','Sofrer quando nao recebe amor','Pensar demais sobre os relacionamentos'],
-    phrase:'"Eu quero me aproximar, mas ainda estou aprendendo a nao ter medo da proximidade."'
   }
 };
 
@@ -646,10 +638,6 @@ function calcProfile() {
 
   // Seguro: baixa pontuacao em tudo
   const maxScore = Math.max(ansioso, evitativo, dependente, hiper);
-
-  // Ambivalente: ansioso E hiper altos
-  if(ansioso >= 8 && hiper >= 8) return 'ambivalente';
-  if(dependente >= 12 && hiper >= 8) return 'ambivalente';
 
   if(maxScore < 4) return 'seguro';
   if(ansioso === maxScore) return 'ansioso';
@@ -774,14 +762,8 @@ function showResult(){
       <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),#fff8e1,var(--gold),transparent);"></div>
       <div style="display:inline-block;background:rgba(212,42,68,0.12);border:1px solid rgba(212,42,68,0.3);padding:5px 16px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Decisão Agora</div>
       <h3 style="font-family:'Jost',sans-serif;font-size:23px;font-weight:400;color:var(--white);line-height:1.4;margin-bottom:18px;max-width:440px;margin-left:auto;margin-right:auto;">Ou você entende esse padrão agora, ou vai levar mais um relacionamento pro mesmo lugar</h3>
-      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 24px;">Seu diagnóstico grátis fica disponível por tempo limitado nesta página. Descubra qual dos 6 perfis emocionais sua história construiu: Apego Ansioso, Evitativo, Seguro, Dependência Emocional, Hiperindependência ou Ambivalência Afetiva.</p>
-      <div style="display:flex;justify-content:center;gap:24px;margin-bottom:24px;flex-wrap:wrap;">
-        <div style="text-align:center;"><div style="font-family:'Jost',sans-serif;font-size:32px;color:var(--gold);line-height:1;">6</div><div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--white-dim);margin-top:2px;">Perfis</div></div>
-        <div style="width:1px;background:rgba(212,42,68,0.2);"></div>
-        <div style="text-align:center;"><div style="font-family:'Jost',sans-serif;font-size:32px;color:var(--gold);line-height:1;">1</div><div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--white-dim);margin-top:2px;">E o seu</div></div>
-        <div style="width:1px;background:rgba(212,42,68,0.2);"></div>
-        <div style="text-align:center;"><div style="font-family:'Jost',sans-serif;font-size:32px;color:var(--gold);line-height:1;">+</div><div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--white-dim);margin-top:2px;">Clareza</div></div>
-      </div>
+      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 24px;">Seu diagnóstico grátis fica disponível por tempo limitado nesta página. Descubra qual dos 5 perfis emocionais sua história construiu: Apego Ansioso, Evitativo, Seguro, Dependência Emocional ou Hiperindependência.</p>
+      <p style="font-family:'Jost',sans-serif;font-size:18px;font-weight:400;color:var(--white-dim);line-height:1.7;max-width:380px;margin:0 auto 24px;">São <span style="color:var(--gold);font-weight:600;">5 perfis</span> emocionais &mdash; <span style="color:var(--gold);font-weight:600;">um deles é o seu</span>, e ele vai te trazer mais clareza.</p>
       <div style="margin-bottom:20px;">
         <div style="display:inline-block;background:rgba(212,42,68,0.12);border:1px solid rgba(212,42,68,0.3);padding:4px 14px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Oferta Exclusiva</div>
         <div style="font-size:12px;color:rgba(200,191,168,0.5);margin-bottom:6px;">De <s>R$ 197,00</s> por apenas</div>
