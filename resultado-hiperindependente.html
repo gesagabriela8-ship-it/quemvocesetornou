@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Perfil Emocional · Hiperindependência Emocional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#171b22;
+    --bg-soft:#232833;
+    --ink:#ede6d8;
+    --ink-soft:#aba58f;
+    --accent:#e0c9a0;
+    --accent-deep:#f0dcb8;
+    --line:rgba(224,201,160,0.2);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',sans-serif;-webkit-font-smoothing:antialiased;}
+  .hero{position:relative;width:100%;max-height:560px;overflow:hidden;background:#12151a;}
+  .hero img{width:100%;display:block;object-fit:cover;object-position:center 25%;}
+  .hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(to bottom, rgba(23,27,34,0) 0%, var(--bg) 100%);}
+  .wrap{max-width:600px;margin:0 auto;padding:0 28px 60px;}
+  .eyebrow{text-align:center;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin:34px 0 14px;font-weight:500;}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:38px;line-height:1.15;text-align:center;margin:0 0 10px;color:var(--ink);}
+  .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;text-align:center;color:var(--accent);margin:0 0 28px;}
+  .greeting{text-align:center;font-size:15px;color:var(--ink-soft);margin:0 0 40px;padding-bottom:32px;border-bottom:1px solid var(--line);}
+  .greeting strong{color:var(--ink);font-weight:600;}
+  .body p{font-size:16.5px;line-height:1.85;color:var(--ink);margin:0 0 22px;}
+  .quote-card{background:var(--bg-soft);border-left:3px solid var(--accent);padding:26px 26px;margin:40px 0;border-radius:2px;}
+  .quote-card p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.5;color:var(--accent-deep);margin:0;}
+  .signature{margin-top:52px;padding-top:28px;border-top:1px solid var(--line);text-align:center;}
+  .signature .name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--ink);margin:0 0 4px;}
+  .signature .cred{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .disclaimer{margin-top:36px;font-size:11.5px;line-height:1.6;color:var(--ink-soft);text-align:center;opacity:0.85;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <img src="resultado-hiperindependente.jpg" alt="Hiperindependência Emocional">
+  </div>
+
+  <div class="wrap">
+    <p class="eyebrow">Seu Resultado Completo</p>
+    <h1>Hiperindependência<br>Emocional</h1>
+    <p class="subtitle">"Você aprendeu a não precisar de ninguém"</p>
+
+    <p class="greeting" id="greeting"></p>
+
+    <div class="body">
+      <p>Esse resultado costuma surpreender, porque, de fora, você provavelmente parece a pessoa mais forte e mais resolvida do grupo. Só que força e proteção nem sempre são a mesma coisa. Muitas vezes, o que parece força é, na verdade, um jeito de nunca mais se colocar numa posição em que possa ser decepcionado de novo.</p>
+
+      <p>Esse padrão costuma nascer de experiências em que depender de alguém não funcionou. Pode ter sido negligência, uma perda importante ou decepções repetidas com pessoas que deveriam estar presentes e não estavam. Diante disso, uma criança (ou um adulto ainda em formação) aprende uma estratégia de sobrevivência muito eficiente: se eu resolver tudo sozinho, ninguém pode me decepcionar de novo. Com o tempo, essa estratégia virou identidade.</p>
+
+      <p>Hoje, isso aparece assim: você tem dificuldade real de pedir ajuda, mesmo quando está sobrecarregado. Prefere fazer tudo sozinho a delegar, mesmo quando delegar seria mais fácil. Mantém uma certa distância emocional, mesmo em relações que te importam. E, por baixo dessa autossuficiência toda, às vezes existe um medo silencioso de ficar isolado, que você raramente admite, nem pra si mesmo.</p>
+
+      <p>Um mal-entendido comum: confundir hiperindependência com autonomia saudável. Não são a mesma coisa. Autonomia saudável se aproxima dos outros porque quer, sem medo. Hiperindependência se afasta dos outros porque, em algum nível, ainda espera ser decepcionada. Uma nasce de segurança, a outra nasce de proteção.</p>
+
+      <p>O caminho aqui não é deixar de ser capaz ou deixar de se virar sozinho. É, aos poucos, permitir que outras pessoas também façam parte, praticando pedir ajuda em situações pequenas antes de precisar fazer isso nas grandes. Interdependência não é fraqueza. É reconhecer que ninguém precisa carregar tudo sozinho o tempo inteiro.</p>
+    </div>
+
+    <div class="quote-card">
+      <p>"Se eu depender de alguém, vou me decepcionar."</p>
+    </div>
+
+    <div class="signature">
+      <p class="name">Dra. Aline Zanette</p>
+      <p class="cred">Médica · Saúde Mental · CRM 36587</p>
+    </div>
+
+    <p class="disclaimer">Ferramenta de autoconhecimento. Não é diagnóstico médico ou psicológico e não substitui avaliação individual realizada por profissional habilitado.</p>
+  </div>
+
+<script>
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const nome = (params.get('nome') || '').trim();
+    const el = document.getElementById('greeting');
+    if(nome){
+      el.innerHTML = '<strong>' + nome.split(' ')[0] + '</strong>, esse é o seu perfil completo.';
+    } else {
+      el.innerHTML = 'Esse é o seu perfil completo.';
+    }
+  })();
+</script>
+
+</body>
+</html>

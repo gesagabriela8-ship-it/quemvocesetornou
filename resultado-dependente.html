@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Perfil Emocional · Dependência Emocional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#170606;
+    --bg-soft:#2a0d0d;
+    --ink:#f3e7e5;
+    --ink-soft:#c2a3a1;
+    --accent:#e2141c;
+    --accent-deep:#ff6b6f;
+    --line:rgba(226,20,28,0.25);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',sans-serif;-webkit-font-smoothing:antialiased;}
+  .hero{position:relative;width:100%;max-height:520px;overflow:hidden;background:#170606;}
+  .hero img{width:100%;display:block;object-fit:cover;object-position:center 35%;}
+  .hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(to bottom, rgba(23,6,6,0) 0%, var(--bg) 100%);}
+  .wrap{max-width:600px;margin:0 auto;padding:0 28px 60px;}
+  .eyebrow{text-align:center;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent-deep);margin:34px 0 14px;font-weight:500;}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:40px;line-height:1.1;text-align:center;margin:0 0 10px;color:var(--ink);}
+  .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;text-align:center;color:var(--accent-deep);margin:0 0 28px;}
+  .greeting{text-align:center;font-size:15px;color:var(--ink-soft);margin:0 0 40px;padding-bottom:32px;border-bottom:1px solid var(--line);}
+  .greeting strong{color:var(--ink);font-weight:600;}
+  .body p{font-size:16.5px;line-height:1.85;color:var(--ink);margin:0 0 22px;}
+  .quote-card{background:var(--bg-soft);border-left:3px solid var(--accent);padding:26px 26px;margin:40px 0;border-radius:2px;}
+  .quote-card p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.5;color:var(--accent-deep);margin:0;}
+  .signature{margin-top:52px;padding-top:28px;border-top:1px solid var(--line);text-align:center;}
+  .signature .name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--ink);margin:0 0 4px;}
+  .signature .cred{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .disclaimer{margin-top:36px;font-size:11.5px;line-height:1.6;color:var(--ink-soft);text-align:center;opacity:0.85;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <img src="resultado-dependente.jpg" alt="Dependência Emocional">
+  </div>
+
+  <div class="wrap">
+    <p class="eyebrow">Seu Resultado Completo</p>
+    <h1>Dependência Emocional</h1>
+    <p class="subtitle">"Você pode estar entregando sua estabilidade para os outros"</p>
+
+    <p class="greeting" id="greeting"></p>
+
+    <div class="body">
+      <p>Antes de qualquer coisa, preciso te dizer o que esse resultado não é: não é sobre você amar demais, nem sobre ser uma pessoa fraca ou "grudenta". É sobre onde você aprendeu a buscar a sua própria estabilidade emocional, e, no seu caso, uma parte importante dela parece estar depositada fora de você, nas outras pessoas.</p>
+
+      <p>Esse padrão costuma se formar em ambientes onde, desde cedo, cuidar do outro (ou do clima emocional da casa) virou uma função sua, muitas vezes antes mesmo de você ter idade pra isso. Talvez você tenha crescido perto de alguém que precisava de cuidado, ou numa casa onde o seu bem-estar dependia de manter os outros bem. Isso ensina, sem que ninguém diga em voz alta, que o seu valor está ligado ao quanto você agrada, ajuda ou é necessário pra alguém.</p>
+
+      <p>Hoje, isso aparece assim: quando a relação vai bem, você vai bem, mas quando ela balança, tudo dentro de você balança junto. Você tem dificuldade de dizer não, de estabelecer limites, ou de pedir ajuda sem se sentir culpado. Às vezes permanece em situações que machucam porque o medo de ficar sozinho pesa mais do que o desconforto de ficar.</p>
+
+      <p>Um mal-entendido comum: achar que a solução é parar de se importar com os outros. Não é isso, e provavelmente nunca vai ser. O problema não é a intensidade do seu cuidado, é o apagamento de você mesmo dentro dele. Existe uma diferença entre amar alguém profundamente e desaparecer pra sustentar essa relação.</p>
+
+      <p>O caminho começa em construir uma base de autoestima que não dependa da aprovação de ninguém, aprender a reconhecer as suas próprias necessidades antes de atender às dos outros, e praticar limites que venham dos seus valores, não do medo. Cuidar bem de alguém e cuidar de si mesmo não deveriam ser escolhas opostas.</p>
+    </div>
+
+    <div class="quote-card">
+      <p>"Eu preciso ser escolhido para me sentir bem."</p>
+    </div>
+
+    <div class="signature">
+      <p class="name">Dra. Aline Zanette</p>
+      <p class="cred">Médica · Saúde Mental · CRM 36587</p>
+    </div>
+
+    <p class="disclaimer">Ferramenta de autoconhecimento. Não é diagnóstico médico ou psicológico e não substitui avaliação individual realizada por profissional habilitado.</p>
+  </div>
+
+<script>
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const nome = (params.get('nome') || '').trim();
+    const el = document.getElementById('greeting');
+    if(nome){
+      el.innerHTML = '<strong>' + nome.split(' ')[0] + '</strong>, esse é o seu perfil completo.';
+    } else {
+      el.innerHTML = 'Esse é o seu perfil completo.';
+    }
+  })();
+</script>
+
+</body>
+</html>
