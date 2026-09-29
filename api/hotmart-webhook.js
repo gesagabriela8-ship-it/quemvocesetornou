@@ -15,7 +15,8 @@
 //   ADMIN_NOTIFY_EMAIL    — (opcional) e-mail da Gesa, para avisos quando não
 //                           for possível encontrar o perfil de um comprador
 
-const { lookupProfileByEmail, sendDeliverableEmail, notifyAdminNoMatch, firstName } = require('./_lib/deliverable');
+const { lookupProfileByEmail, sendDeliverableEmail, notifyAdminNoMatch, firstName, sendCamadaEmail } = require('./_lib/deliverable');
+const Camada = require('../camada-logic.js');
 
 function extractBuyer(body) {
   const data = body.data || {};
@@ -35,6 +36,13 @@ function extractStatus(body) {
 //   a0my7i9g = Resultado Basico R$29,90  -> so libera a pagina, sem e-mail
 //   wch9vq6n = Resultado Completo R$49,90 -> dispara o e-mail com o entregavel
 const TIER2_OFFER_CODE = 'wch9vq6n';
+// A Camada Oculta (Etapa 2): preco especial nos 15 min apos o resultado e preco cheio
+const TIER3_OFFER_CODES = ['ymk5cp12', 'ui4gakw6']; // ymk5cp12 = R$69,90 | ui4gakw6 = R$97,00
+
+function extractSck(body) {
+  const purchase = body.data?.purchase || {};
+  return (purchase.origin?.sck || purchase.sck || body.sck || '').toString();
+}
 
 function extractOfferCode(body) {
   const purchase = body.data?.purchase || {};
@@ -92,6 +100,23 @@ module.exports = async (req, res) => {
   }
 
   const offerCode = extractOfferCode(body);
+
+  if (TIER3_OFFER_CODES.includes(offerCode)) {
+    // Compra da Camada Oculta: as pontuacoes das 5 dimensoes vem no parametro sck
+    // do link de checkout (gerado pela pagina camada-oculta.html).
+    const cod = extractSck(body);
+    const dec = Camada.decodificar(cod);
+    if (!dec) {
+      await notifyAdminNoMatch({ email, name: hotmartName, raw: body });
+      res.status(200).json({ ok: false, reason: 'camada oculta sem codigo de resultado (sck)', email, offerCode });
+      return;
+    }
+    const r = Camada.classificar(dec.s, dec.e1);
+    const sent = await sendCamadaEmail({ email, nome: hotmartName || firstName(email), cod });
+    res.status(200).json({ ok: true, tier: 3, sent, email, resultado: r.key, regra: r.regra, versao: r.versao });
+    return;
+  }
+
   if (offerCode && offerCode !== TIER2_OFFER_CODE) {
     // Compra do resultado basico (R$29,90) - a pessoa ja ve o resultado na hora, na
     // propria pagina (via redirecionamento da Hotmart); nao envia o e-mail aprofundado,
