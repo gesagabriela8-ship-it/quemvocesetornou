@@ -423,25 +423,36 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
 
 <script>
 // Deteccao de pagamento via Hotmart
+// unlockedSteps: 0 = nada liberado, 1 = resultado basico (R$29,90), 2 = resultado completo 5 perfis (R$49,90)
 let unlockedSteps = 0;
 (function(){
   const params = new URLSearchParams(window.location.search);
   const transaction = params.get('transaction');
   const source = params.get('itm_source');
   const affParam = params.get('aff');
-  if(transaction || source === 'thankyoupage' || affParam){
-    unlockedSteps = 1;
-    try { sessionStorage.setItem('qvst_unlocked','1'); } catch(e){}
+  const voltouDoCheckout = !!(transaction || source === 'thankyoupage' || affParam);
+
+  let stored = 0;
+  try { stored = parseInt(sessionStorage.getItem('qvst_unlocked') || '0') || 0; } catch(e){}
+
+  if (voltouDoCheckout) {
+    let pendingTier = 1;
+    try { pendingTier = parseInt(sessionStorage.getItem('qvst_pending_tier') || '1') || 1; } catch(e){}
+    unlockedSteps = Math.max(stored, pendingTier);
+    try { sessionStorage.setItem('qvst_unlocked', String(unlockedSteps)); } catch(e){}
+  } else {
+    unlockedSteps = stored;
   }
-  try {
-    const stored = sessionStorage.getItem('qvst_unlocked');
-    if(stored && !transaction && !source && !affParam){
-      unlockedSteps = parseInt(stored);
-    }
-  } catch(e){}
 })();
 
-const HOTMART_LINK = 'https://pay.hotmart.com/X106366253K?off=d704mauj&checkoutMode=10';
+// off=a0my7i9g -> Resultado Basico R$29,90 | off=wch9vq6n -> Resultado Completo 5 Perfis R$49,90
+const HOTMART_LINK_TIER1 = 'https://pay.hotmart.com/X106366253K?off=a0my7i9g&checkoutMode=10';
+const HOTMART_LINK_TIER2 = 'https://pay.hotmart.com/X106366253K?off=wch9vq6n&checkoutMode=10';
+
+function abrirCheckout(tier){
+  try { sessionStorage.setItem('qvst_pending_tier', String(tier)); } catch(e){}
+  window.open(tier === 2 ? HOTMART_LINK_TIER2 : HOTMART_LINK_TIER1, '_blank');
+}
 
 // == PERGUNTAS ==
 const questions = [
@@ -547,6 +558,71 @@ const profiles = {
     text:`<p>Sua força pode ter surgido da necessidade. Talvez voce tenha aprendido cedo demais que precisava resolver tudo sozinha(o). Talvez tenha sido decepcionada(o) repetidamente. Talvez tenha descoberto que confiar era arriscado.</p><p>Com o tempo, a autossuficiência virou protecao. O problema e que essa protecao pode se transformar em isolamento emocional. Voce pode ter dificuldade de receber ajuda. Pode sentir necessidade de controlar tudo.</p>`,
     habits:['Resolver tudo sem pedir ajuda','Ter dificuldade de confiar','Evitar demonstrar necessidades emocionais','Sentir que precisa ser forte o tempo todo','Assumir responsabilidades excessivas'],
     phrase:'"Se eu depender de alguem, vou me decepcionar."'
+  }
+};
+
+// Resultado completo (5 perfis, R$49,90) - mesmo texto aprofundado enviado por e-mail,
+// sem as imagens (que sao exclusivas do e-mail, pensadas pra combinar com o fundo claro).
+const deepProfiles = {
+  ansioso:{
+    h1:'Apego Ansioso',
+    sub:'"Você ama com medo de perder"',
+    paras:[
+      'Se você chegou até aqui, é bem provável que já tenha se perguntado, mais de uma vez, por que ama de um jeito tão intenso. E por que esse mesmo amor vem sempre acompanhado de um medo que não dá trégua. Eu vejo esse padrão com frequência no consultório, e a primeira coisa que preciso te dizer é: isso não é "carência", não é fraqueza de caráter, e não é frescura. É um padrão de apego, um jeito que o seu sistema nervoso aprendeu, ainda muito cedo, a lidar com vínculo.',
+      'Na maioria dos casos, esse padrão se forma na infância, quando o cuidado que você recebeu era inconsistente. Às vezes presente e atento, às vezes ausente ou imprevisível, não por maldade de ninguém, mas porque quem cuidou de você também estava lidando com as próprias limitações. Pra uma criança pequena, isso ensina uma lição que fica gravada: "o amor pode sumir, então eu preciso ficar alerta". Esse alerta virou hábito. E hoje, adulto, ele continua ligado.',
+      'Na prática, isso costuma aparecer assim: você sente o clima da relação mudar antes de qualquer coisa ser dita. Uma mensagem demorada vira, na sua cabeça, sinal de afastamento. Você busca reasseguramento, precisa ouvir de novo que está tudo bem, que a pessoa ainda gosta de você, mas o alívio dura pouco, e a dúvida volta. Às vezes você se entrega tanto à relação que, sem perceber, vai deixando de lado o que você mesmo precisa, sente ou quer.',
+      'Aqui vai um mal-entendido comum que eu preciso desfazer: apego ansioso não é um defeito de personalidade, e muito menos algo definitivo. Não existe "sou assim e pronto". Existe um padrão aprendido, e o que é aprendido pode ser revisto. Isso tem nome na literatura: chama-se "apego conquistado", quando alguém que cresceu com apego inseguro desenvolve, ao longo da vida adulta, uma forma mais segura de se relacionar. Isso acontece através de autoconhecimento, de relações que corrigem a experiência antiga e, quando necessário, de acompanhamento terapêutico.',
+      'O primeiro passo não é parar de sentir tanto. É entender de onde vem esse alarme, pra deixar de reagir a ele no automático, e passar a escolher, com mais clareza, como você quer se relacionar.'
+    ],
+    quote:'"Se eu perder essa pessoa, talvez eu não fique bem."'
+  },
+  evitativo:{
+    h1:'Apego Evitativo',
+    sub:'"Você se protege através da distância"',
+    paras:[
+      'Se identificar com esse perfil não é sinal de que você não sabe amar. Pelo contrário: você sente, e sente fundo. Só que, em algum momento da sua vida, você aprendeu que expor o que sente pode custar caro. E, desde então, colocar distância virou proteção.',
+      'Esse padrão costuma se formar quando, na infância, buscar colo, atenção ou conforto não trazia o retorno esperado. Talvez o pedido fosse ignorado. Talvez viesse uma resposta fria, ou até uma cobrança pra você "se virar sozinho". Com o tempo, uma criança que passa por isso aprende uma lição prática: pedir é arriscado, então o mais seguro é não precisar de ninguém. Essa autossuficiência, que começou como sobrevivência, virou identidade.',
+      'Hoje, isso aparece assim: quando uma relação começa a ficar mais próxima, mais séria, mais exposta, alguma coisa dentro de você pede espaço. Você tem dificuldade de mostrar o que sente, mesmo quando sente muito. Prefere resolver tudo sozinho a admitir que precisa de ajuda. E, por dentro, seu corpo reage ao vínculo (o coração acelera, a tensão aumenta) mesmo quando por fora você parece calmo e no controle.',
+      'Um mal-entendido comum sobre esse perfil: pensar que você escolhe se afastar de forma fria e consciente, como se não se importasse. Não é isso. Na maioria das vezes, esse afastamento acontece no automático, como um mecanismo de defesa que age antes mesmo de você decidir. Você se importa. Só aprendeu, cedo demais, que era mais seguro não demonstrar.',
+      'O caminho aqui começa pequeno: reconhecer o momento exato em que o impulso de recuar aparece, e, aos poucos, praticar ficar um pouco mais perto, mesmo com o desconforto. Não é sobre virar outra pessoa de uma vez. É sobre ampliar, devagar, a sua capacidade de deixar alguém entrar.'
+    ],
+    quote:'"Se eu depender de alguém, posso me machucar."'
+  },
+  seguro:{
+    h1:'Apego Seguro',
+    sub:'"Você consegue amar sem se perder"',
+    paras:[
+      'Se esse é o seu resultado, vale começar reconhecendo algo importante: apego seguro não significa nunca sentir insegurança, ciúme ou medo. Significa que, quando esses sentimentos aparecem, você consegue lidar com eles sem perder o chão, e sem precisar controlar o outro pra se sentir bem.',
+      'Esse padrão costuma se formar quando o cuidado recebido na infância foi, na maior parte do tempo, consistente e responsivo. Não precisou ser perfeito. Precisou ser confiável o suficiente pra que você aprendesse, ainda pequeno, que buscar conforto funciona, que o outro pode ser uma base segura, e que voltar a se sentir bem depois de um momento difícil é possível.',
+      'Na prática, isso aparece assim: você consegue falar sobre o que sente sem transformar isso em briga. Sabe pedir o que precisa, mas também sabe ouvir o que o outro precisa. Discorda sem romper, se aproxima sem sufocar, e confia mesmo sabendo que confiar envolve risco. Quando alguém se distancia um pouco, você sente, mas não entra em pânico. Consegue esperar.',
+      'Um mal-entendido comum é achar que apego é uma característica fixa, definida de uma vez na infância e impossível de mudar. Não é bem assim. Quem já teve um padrão mais inseguro também pode desenvolver, ao longo da vida adulta, uma forma mais segura de se relacionar, geralmente através de relações que ajudam a corrigir experiências antigas e de um trabalho consciente de autoconhecimento.',
+      'Se esse é o seu resultado, o convite não é "não fazer nada". É continuar cultivando o que já funciona: comunicação clara, limites saudáveis e a capacidade de se manter inteiro mesmo dentro de um vínculo forte. Essa base é rara, e vale a pena proteger.'
+    ],
+    quote:'"Eu valorizo quem está comigo, mas continuo sendo eu."'
+  },
+  dependente:{
+    h1:'Dependência Emocional',
+    sub:'"Você pode estar entregando sua estabilidade para os outros"',
+    paras:[
+      'Antes de qualquer coisa, preciso te dizer o que esse resultado não é: não é sobre você amar demais, nem sobre ser uma pessoa fraca ou "grudenta". É sobre onde você aprendeu a buscar a sua própria estabilidade emocional, e, no seu caso, uma parte importante dela parece estar depositada fora de você, nas outras pessoas.',
+      'Esse padrão costuma se formar em ambientes onde, desde cedo, cuidar do outro (ou do clima emocional da casa) virou uma função sua, muitas vezes antes mesmo de você ter idade pra isso. Talvez você tenha crescido perto de alguém que precisava de cuidado, ou numa casa onde o seu bem-estar dependia de manter os outros bem. Isso ensina, sem que ninguém diga em voz alta, que o seu valor está ligado ao quanto você agrada, ajuda ou é necessário pra alguém.',
+      'Hoje, isso aparece assim: quando a relação vai bem, você vai bem, mas quando ela balança, tudo dentro de você balança junto. Você tem dificuldade de dizer não, de estabelecer limites, ou de pedir ajuda sem se sentir culpado. Às vezes permanece em situações que machucam porque o medo de ficar sozinho pesa mais do que o desconforto de ficar.',
+      'Um mal-entendido comum: achar que a solução é parar de se importar com os outros. Não é isso, e provavelmente nunca vai ser. O problema não é a intensidade do seu cuidado, é o apagamento de você mesmo dentro dele. Existe uma diferença entre amar alguém profundamente e desaparecer pra sustentar essa relação.',
+      'O caminho começa em construir uma base de autoestima que não dependa da aprovação de ninguém, aprender a reconhecer as suas próprias necessidades antes de atender às dos outros, e praticar limites que venham dos seus valores, não do medo. Cuidar bem de alguém e cuidar de si mesmo não deveriam ser escolhas opostas.'
+    ],
+    quote:'"Eu preciso ser escolhido para me sentir bem."'
+  },
+  hiperindependente:{
+    h1:'Hiperindependência Emocional',
+    sub:'"Você aprendeu a não precisar de ninguém"',
+    paras:[
+      'Esse resultado costuma surpreender, porque, de fora, você provavelmente parece a pessoa mais forte e mais resolvida do grupo. Só que força e proteção nem sempre são a mesma coisa. Muitas vezes, o que parece força é, na verdade, um jeito de nunca mais se colocar numa posição em que possa ser decepcionado de novo.',
+      'Esse padrão costuma nascer de experiências em que depender de alguém não funcionou. Pode ter sido negligência, uma perda importante ou decepções repetidas com pessoas que deveriam estar presentes e não estavam. Diante disso, uma criança (ou um adulto ainda em formação) aprende uma estratégia de sobrevivência muito eficiente: se eu resolver tudo sozinho, ninguém pode me decepcionar de novo. Com o tempo, essa estratégia virou identidade.',
+      'Hoje, isso aparece assim: você tem dificuldade real de pedir ajuda, mesmo quando está sobrecarregado. Prefere fazer tudo sozinho a delegar, mesmo quando delegar seria mais fácil. Mantém uma certa distância emocional, mesmo em relações que te importam. E, por baixo dessa autossuficiência toda, às vezes existe um medo silencioso de ficar isolado, que você raramente admite, nem pra si mesmo.',
+      'Um mal-entendido comum: confundir hiperindependência com autonomia saudável. Não são a mesma coisa. Autonomia saudável se aproxima dos outros porque quer, sem medo. Hiperindependência se afasta dos outros porque, em algum nível, ainda espera ser decepcionada. Uma nasce de segurança, a outra nasce de proteção.',
+      'O caminho aqui não é deixar de ser capaz ou deixar de se virar sozinho. É, aos poucos, permitir que outras pessoas também façam parte, praticando pedir ajuda em situações pequenas antes de precisar fazer isso nas grandes. Interdependência não é fraqueza. É reconhecer que ninguém precisa carregar tudo sozinho o tempo inteiro.'
+    ],
+    quote:'"Se eu depender de alguém, vou me decepcionar."'
   }
 };
 
@@ -669,8 +745,24 @@ function showResult(){
     </div>
     <div class="section-sep"></div>`;
 
-  if(unlockedSteps >= 1){
-    // Perfil desbloqueado
+  if(unlockedSteps >= 2){
+    // Resultado completo desbloqueado (R$49,90) - texto aprofundado, sem foto (foto e so no e-mail)
+    const deep = deepProfiles[profileKey];
+    html += `
+    <div class="unlocked-box">
+      <p class="unlocked-label">Seu Resultado Completo</p>
+      <div class="profile-card">
+        <div class="profile-name">${deep.h1}</div>
+        <div class="profile-subtitle">${deep.sub}</div>
+        <div class="profile-text">${deep.paras.map(p=>`<p>${p}</p>`).join('')}</div>
+        <div class="profile-phrase">${deep.quote}</div>
+      </div>
+    </div>
+    <div class="section-sep"></div>
+    <p style="font-size:12px;color:var(--white-dim);text-align:center;margin:-8px 0 20px;">Você também recebeu essa análise completa por e-mail, com uma ilustração exclusiva para o seu perfil.</p>
+    <div class="section-sep"></div>`;
+  } else if(unlockedSteps === 1){
+    // Resultado basico desbloqueado (R$29,90)
     html += `
     <div class="unlocked-box">
       <p class="unlocked-label">Seu Perfil Emocional Predominante</p>
@@ -684,6 +776,19 @@ function showResult(){
         </div>
         <div class="profile-phrase">${profile.phrase}</div>
       </div>
+    </div>
+    <div class="section-sep"></div>
+    <div style="background:linear-gradient(135deg,rgba(10,10,10,0.95) 0%,rgba(30,22,5,0.98) 100%);border:1px solid rgba(201,168,76,0.45);padding:36px 28px;margin-bottom:20px;position:relative;overflow:hidden;text-align:center;">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),#fff8e1,var(--gold),transparent);"></div>
+      <div style="display:inline-block;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);padding:5px 16px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Vá mais fundo</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:6px;">Resultado Completo</h3>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;color:var(--gold);line-height:1.3;margin-bottom:18px;">5 Perfis Emocionais</h3>
+      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 24px;">Esse foi só o resumo. Na análise completa, a Dra. Aline Zanette aprofunda de onde vem esse padrão, como ele aparece no seu dia a dia e qual o caminho possível a partir daqui - você recebe na hora aqui na página, e também por e-mail com uma ilustração exclusiva pro seu perfil.</p>
+      <div style="margin-bottom:20px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;"><small style="font-size:22px;vertical-align:super;">R$</small>49<span style="font-size:32px">,90</span></div>
+      </div>
+      <button class="btn-unlock" onclick="abrirCheckout(2)" style="padding:16px 40px;font-size:12px;letter-spacing:0.25em;">Quero Meu Resultado Completo</button>
+      <p style="font-size:11px;color:rgba(200,191,168,0.35);margin-top:12px;">Acesso imediato · Análise personalizada para o seu resultado · Compra segura via Hotmart, garantia de 7 dias</p>
     </div>
     <div class="section-sep"></div>`;
   } else {
@@ -700,7 +805,7 @@ function showResult(){
         <div style="font-size:12px;color:rgba(200,191,168,0.5);margin-bottom:6px;">De <s>R$ 47,90</s> por apenas</div>
         <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;"><small style="font-size:22px;vertical-align:super;">R$</small>29<span style="font-size:32px">,90</span></div>
       </div>
-      <button class="btn-unlock" onclick="window.open('${HOTMART_LINK}','_blank')" style="padding:16px 40px;font-size:12px;letter-spacing:0.25em;">Quero Descobrir Meu Perfil</button>
+      <button class="btn-unlock" onclick="abrirCheckout(1)" style="padding:16px 40px;font-size:12px;letter-spacing:0.25em;">Quero Descobrir Meu Perfil</button>
       <p style="font-size:11px;color:rgba(200,191,168,0.35);margin-top:12px;">Acesso imediato · Análise personalizada para o seu resultado · Compra segura via Hotmart, garantia de 7 dias</p>
     </div>
     <div class="section-sep"></div>`;
@@ -788,7 +893,7 @@ window.addEventListener('DOMContentLoaded', function(){
   if(dataSrc && heroImg) heroImg.src = dataSrc;
 
   const stickyBtn = document.getElementById('stickyTimerBtn');
-  if(stickyBtn) stickyBtn.addEventListener('click', function(){ window.open(HOTMART_LINK, '_blank'); });
+  if(stickyBtn) stickyBtn.addEventListener('click', function(){ abrirCheckout(1); });
 });
 
 // Player do mini VSL agora é o Vturb (script oficial carregado direto no HTML,
