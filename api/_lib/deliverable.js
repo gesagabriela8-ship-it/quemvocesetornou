@@ -46,10 +46,19 @@ async function lookupProfileByEmail(email) {
   }
 }
 
-function buildEmailHtml({ nome, perfilKey }) {
+function camadaLink({ perfilKey, nome, email }) {
+  const url = new URL('camada-oculta.html', SITE_BASE_URL);
+  if (perfilKey) url.searchParams.set('p', perfilKey);
+  if (nome) url.searchParams.set('n', nome);
+  if (email) url.searchParams.set('e', email);
+  return url.toString();
+}
+
+function buildEmailHtml({ nome, perfilKey, email }) {
   const p = PROFILES[perfilKey];
   const nomeCurto = firstName(nome);
   const link = profileLink(perfilKey, nome);
+  const linkCamada = camadaLink({ perfilKey, nome, email });
   return `
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -78,6 +87,14 @@ function buildEmailHtml({ nome, perfilKey }) {
               </table>
               <p style="margin:0 0 4px;font-size:15px;line-height:1.6;color:#1c1c1c;font-style:italic;">Dra. Aline Zanette</p>
               <p style="margin:0;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8a8a8a;font-family:Arial, sans-serif;">Médica · Saúde Mental · CRM 36587</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 36px;background-color:#1c1c1c;">
+              <p style="margin:0 0 8px;color:#e9c46a;font-size:15px;font-style:italic;">A Camada Oculta</p>
+              <p style="margin:0 0 12px;color:#f5f0e8;font-size:19px;line-height:1.4;">Você descobriu o seu padrão. Agora descubra o que ele esconde.</p>
+              <p style="margin:0 0 18px;color:#c8bfa8;font-size:14px;line-height:1.7;font-family:Arial, sans-serif;">Nenhum padrão vive sozinho. Em 35 perguntas novas, você descobre como o seu se combina com outros e qual dos 10 perfis híbridos explica as reações que você ainda não entende em si. Você responde primeiro e só paga se quiser ver o resultado.</p>
+              <a href="${linkCamada}" style="display:inline-block;padding:13px 26px;background-color:#e9c46a;color:#1c1c1c;text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-family:Arial, sans-serif;">Descobrir a minha Camada Oculta</a>
             </td>
           </tr>
           <tr>
@@ -120,12 +137,66 @@ async function sendDeliverableEmail({ email, nome, perfilKey }) {
   if (!email || !PROFILES[perfilKey]) {
     return { ok: false, error: 'missing_email_or_invalid_perfil' };
   }
-  const html = buildEmailHtml({ nome, perfilKey });
+  const html = buildEmailHtml({ nome, perfilKey, email });
   const nomeCurto = firstName(nome);
   return sendEmail({
     to: email,
     subject: `${nomeCurto}, seu Perfil Emocional completo chegou`,
     html,
+  });
+}
+
+// ----- Etapa 2: A Camada Oculta -----
+const Camada = require('../../camada-logic.js');
+
+function buildCamadaEmailHtml({ nome, cod }) {
+  const dec = Camada.decodificar(cod);
+  const r = Camada.classificar(dec.s, dec.e1);
+  const nomeCurto = firstName(nome);
+  const url = new URL('camada-oculta.html', SITE_BASE_URL);
+  url.searchParams.set('r', cod);
+  if (nome) url.searchParams.set('n', firstName(nome));
+  const link = url.toString();
+  const titulo = r.tipo === 'perfil' ? Camada.NOMES[r.key] : 'um mapa emocional próprio';
+  return `
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#f4f1ec;font-family:Georgia, 'Times New Roman', serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f1ec;padding:32px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="100%" style="max-width:560px;background-color:#ffffff;border-radius:6px;overflow:hidden;" cellpadding="0" cellspacing="0">
+        <tr><td style="background-color:#2a0e12;padding:28px 32px;text-align:center;">
+          <p style="margin:0;color:#e9c46a;font-size:15px;font-style:italic;">A Camada Oculta</p>
+        </td></tr>
+        <tr><td style="padding:40px 36px 24px;">
+          <p style="margin:0 0 18px;font-size:22px;line-height:1.4;color:#1c1c1c;">${nomeCurto}, a sua Camada Oculta está pronta.</p>
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:#3d3d3d;font-family:Arial, sans-serif;">As suas cinco dimensões emocionais formaram <strong>${titulo}</strong>. Preparei uma leitura completa: de onde essa combinação costuma vir, como ela aparece nos seus relacionamentos, a função de proteção que ela cumpre e um plano de quatro semanas para você começar a mudar a forma como reage.</p>
+          <p style="margin:0 0 28px;font-size:15px;line-height:1.7;color:#3d3d3d;font-family:Arial, sans-serif;">Guarde este e-mail. O botão abaixo abre a sua leitura sempre que você quiser voltar a ela.</p>
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 28px;"><tr>
+            <td style="border-radius:4px;background-color:#1c1c1c;">
+              <a href="${link}" style="display:inline-block;padding:16px 36px;color:#e9c46a;text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-family:Arial, sans-serif;">Abrir a minha Camada Oculta</a>
+            </td>
+          </tr></table>
+          <p style="margin:0 0 4px;font-size:15px;line-height:1.6;color:#1c1c1c;font-style:italic;">Dra. Aline Zanette</p>
+          <p style="margin:0;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8a8a8a;font-family:Arial, sans-serif;">Médica · Saúde Mental · CRM 36587</p>
+        </td></tr>
+        <tr><td style="padding:20px 36px 32px;border-top:1px solid #eee;">
+          <p style="margin:0;font-size:11px;line-height:1.6;color:#9a9a9a;font-family:Arial, sans-serif;">Ferramenta de autoconhecimento. Não é diagnóstico médico ou psicológico e não substitui avaliação individual realizada por profissional habilitado. Se o botão não funcionar, copie e cole este link no navegador: ${link}</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+async function sendCamadaEmail({ email, nome, cod }) {
+  if (!email || !Camada.decodificar(cod)) return { ok: false, error: 'missing_email_or_invalid_code' };
+  return sendEmail({
+    to: email,
+    subject: `${firstName(nome)}, a sua Camada Oculta chegou`,
+    html: buildCamadaEmailHtml({ nome, cod }),
   });
 }
 
@@ -148,4 +219,6 @@ module.exports = {
   sendDeliverableEmail,
   notifyAdminNoMatch,
   firstName,
+  buildCamadaEmailHtml,
+  sendCamadaEmail,
 };
