@@ -31,6 +31,16 @@ function extractStatus(body) {
   return event + ' ' + status;
 }
 
+// Codigo da oferta paga na Hotmart (Precificacao e ofertas > coluna "Codigo"):
+//   a0my7i9g = Resultado Basico R$29,90  -> so libera a pagina, sem e-mail
+//   wch9vq6n = Resultado Completo R$49,90 -> dispara o e-mail com o entregavel
+const TIER2_OFFER_CODE = 'wch9vq6n';
+
+function extractOfferCode(body) {
+  const purchase = body.data?.purchase || {};
+  return (purchase.offer?.code || purchase.offer_code || body.offer_code || '').toString();
+}
+
 function extractHottok(body, req) {
   return (
     body.hottok ||
@@ -78,6 +88,15 @@ module.exports = async (req, res) => {
   const { email, name: hotmartName } = extractBuyer(body);
   if (!email) {
     res.status(200).json({ skipped: true, reason: 'sem e-mail do comprador no payload' });
+    return;
+  }
+
+  const offerCode = extractOfferCode(body);
+  if (offerCode && offerCode !== TIER2_OFFER_CODE) {
+    // Compra do resultado basico (R$29,90) - a pessoa ja ve o resultado na hora, na
+    // propria pagina (via redirecionamento da Hotmart); nao envia o e-mail aprofundado,
+    // que e exclusivo de quem compra o resultado completo (R$49,90).
+    res.status(200).json({ ok: true, skipped: true, reason: 'oferta nao inclui o entregavel por e-mail', offerCode, email });
     return;
   }
 
