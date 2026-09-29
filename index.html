@@ -436,9 +436,14 @@ let unlockedSteps = 0;
   try { stored = parseInt(sessionStorage.getItem('qvst_unlocked') || '0') || 0; } catch(e){}
 
   if (voltouDoCheckout) {
+    // Compra da Camada Oculta (R$69,90/R$97): a Hotmart devolve para a raiz do site,
+    // entao encaminha para a pagina da Etapa 2 mantendo os parametros da compra.
+    let camadaPendente = false;
+    try { camadaPendente = sessionStorage.getItem('qvst_pending_tier') === '3' || !!localStorage.getItem('qvst3_pendente'); } catch(e){}
+    if (camadaPendente) { window.location.replace('camada-oculta.html' + window.location.search); return; }
     let pendingTier = 1;
     try { pendingTier = parseInt(sessionStorage.getItem('qvst_pending_tier') || '1') || 1; } catch(e){}
-    unlockedSteps = Math.max(stored, pendingTier);
+    unlockedSteps = Math.min(2, Math.max(stored, pendingTier));
     try { sessionStorage.setItem('qvst_unlocked', String(unlockedSteps)); } catch(e){}
   } else {
     unlockedSteps = stored;
@@ -635,6 +640,7 @@ const TIMER_MINUTES = 15;
 let timerInterval;
 let answers = [];
 let currentLevel = null;
+let restaurandoResultado = false;
 
 // Calcular perfil baseado nas respostas (20 perguntas)
 // Índices: 0-4=Infância | 5-9=Funciona Hoje | 10-14=Dependência | 15-17=Hiper | 18-19=Validação
@@ -760,6 +766,14 @@ function showResult(){
     </div>
     <div class="section-sep"></div>
     <p style="font-size:12px;color:var(--white-dim);text-align:center;margin:-8px 0 20px;">Você também recebeu essa análise completa por e-mail, com uma ilustração exclusiva para o seu perfil.</p>
+    <div class="section-sep"></div>
+    <div style="background:radial-gradient(120% 90% at 50% 0%,#2A0E12 0%,rgba(10,10,10,0.98) 75%);border:1px solid rgba(201,168,76,0.45);padding:40px 26px;margin-bottom:20px;text-align:center;">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);margin-bottom:14px;">A Camada Oculta</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:16px;">Você descobriu o seu padrão.<br><em style="color:var(--gold-light);">Agora descubra o que ele esconde.</em></h3>
+      <p style="font-size:15px;color:var(--white-dim);line-height:1.8;max-width:420px;margin:0 auto 26px;">Nenhum padrão vive sozinho. Em 35 perguntas novas, você descobre como ele se combina com outros e qual dos 10 perfis híbridos explica as reações que você ainda não entende em si.</p>
+      <a class="btn-unlock" href="camada-oculta.html?p=${encodeURIComponent(profileKey)}&n=${encodeURIComponent(userName)}&e=${encodeURIComponent(userEmail)}" style="display:inline-block;text-decoration:none;padding:16px 36px;font-size:12px;letter-spacing:0.2em;">Quero ver a minha Camada Oculta</a>
+      <p style="font-size:11px;color:rgba(200,191,168,0.45);margin-top:12px;">Você responde primeiro e só paga se quiser ver o resultado.</p>
+    </div>
     <div class="section-sep"></div>`;
   } else if(unlockedSteps === 1){
     // Resultado basico desbloqueado (R$29,90)
@@ -830,7 +844,8 @@ function showResult(){
 
   cont.innerHTML = html;
   goTo('screen-result');
-  saveToSheets(userName, currentLevel.label, totalScore, profileKey);
+  if (!restaurandoResultado) saveToSheets(userName, currentLevel.label, totalScore, profileKey);
+  try { localStorage.setItem('qvst_state', JSON.stringify({ userName: userName, userEmail: userEmail, totalScore: totalScore, answers: answers, ts: Date.now() })); } catch(e){}
 
   // Timer
   if(unlockedSteps === 0){
@@ -894,6 +909,22 @@ window.addEventListener('DOMContentLoaded', function(){
 
   const stickyBtn = document.getElementById('stickyTimerBtn');
   if(stickyBtn) stickyBtn.addEventListener('click', function(){ abrirCheckout(1); });
+
+  // Voltou da Hotmart depois de pagar o Tier 1 ou 2: reabre o resultado da pessoa
+  // (as respostas ficam guardadas no navegador), em vez de mostrar a pagina inicial.
+  const params = new URLSearchParams(window.location.search);
+  const voltou = !!(params.get('transaction') || params.get('itm_source') === 'thankyoupage' || params.get('aff'));
+  if (voltou && unlockedSteps > 0) {
+    let salvo = null;
+    try { salvo = JSON.parse(localStorage.getItem('qvst_state') || 'null'); } catch(e){}
+    if (salvo && Array.isArray(salvo.answers) && salvo.answers.length === questions.length && Date.now() - (salvo.ts || 0) < 7*24*3600*1000) {
+      userName = salvo.userName || ''; userEmail = salvo.userEmail || '';
+      totalScore = salvo.totalScore || 0; answers = salvo.answers;
+      restaurandoResultado = true;
+      showResult();
+      restaurandoResultado = false;
+    }
+  }
 });
 
 // Player do mini VSL agora é o Vturb (script oficial carregado direto no HTML,

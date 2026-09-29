@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A Camada Oculta - Dra. Aline Zanette</title>
+<meta name="robots" content="noindex">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1078277001574200');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1078277001574200&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "ynjzyjduhj");
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18345492627"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18345492627');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8D49B;--gold-dim:#8B6F35;
+  --black:#0A0A0A;--ink:#141210;--wine:#2A0E12;--wine-soft:#3B1419;
+  --white:#F5F0E8;--white-dim:#C8BFA8;--line:rgba(201,168,76,0.18);
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:var(--gold)}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.screen{display:none}
+.screen.active{display:block}
+.wrap{max-width:640px;margin:0 auto;padding:56px 24px 72px}
+.btn{display:inline-block;background:var(--gold);color:var(--black);border:none;padding:18px 36px;font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background .25s;text-decoration:none;text-align:center}
+.btn:hover{background:var(--gold-light)}
+.btn-block{display:block;width:100%}
+.small{font-size:12px;color:rgba(200,191,168,0.55);line-height:1.6}
+.center{text-align:center}
+
+/* OFERTA */
+.oferta-hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(120% 80% at 50% 0%,var(--wine) 0%,rgba(10,10,10,0) 70%),var(--black);border-bottom:1px solid var(--line)}
+.oferta-hero .wrap{padding-top:72px;padding-bottom:64px}
+.marca{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--gold);margin-bottom:28px}
+.hl{font-family:var(--serif);font-weight:300;font-size:clamp(38px,8.5vw,64px);line-height:1.04;color:var(--white);letter-spacing:-0.01em}
+.hl .veu{display:block;color:var(--gold-light);font-style:italic;filter:blur(0);transition:filter 2.2s ease .6s,opacity 2.2s ease .6s}
+.hl .veu.velado{filter:blur(14px);opacity:.35}
+.lead{font-size:18px;line-height:1.75;color:var(--white-dim);margin-top:30px;max-width:34em}
+.lead strong{color:var(--white);font-weight:500}
+.hero-cta{margin-top:40px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.oferta-bloco{padding:64px 0;border-bottom:1px solid var(--line)}
+.oferta-bloco h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,6vw,40px);line-height:1.15;margin-bottom:22px}
+.oferta-bloco p{font-size:17px;line-height:1.8;color:var(--white-dim);margin-bottom:16px}
+.contradicoes{list-style:none;margin:28px 0 8px}
+.contradicoes li{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-style:italic;color:var(--white);line-height:1.35;padding:14px 0;border-top:1px solid var(--line)}
+.contradicoes li:last-child{border-bottom:1px solid var(--line)}
+.recebe{list-style:none;margin-top:8px}
+.recebe li{font-size:16px;line-height:1.7;color:var(--white-dim);padding:12px 0 12px 30px;position:relative;border-top:1px solid rgba(201,168,76,0.08)}
+.recebe li::before{content:'';position:absolute;left:4px;top:22px;width:10px;height:10px;border:1px solid var(--gold);transform:rotate(45deg)}
+.recebe strong{color:var(--white);font-weight:500}
+.passos{counter-reset:p;list-style:none;margin-top:8px}
+.passos li{counter-increment:p;display:grid;grid-template-columns:44px 1fr;gap:6px;padding:14px 0;font-size:16px;line-height:1.7;color:var(--white-dim)}
+.passos li::before{content:counter(p);font-family:var(--serif);font-size:30px;color:var(--gold);line-height:1}
+.preco-box{margin-top:12px;padding:40px 28px;background:linear-gradient(160deg,var(--wine) 0%,var(--ink) 70%);border:1px solid rgba(201,168,76,0.4);text-align:center}
+.preco-box .de{font-size:13px;color:rgba(200,191,168,0.6)}
+.preco{font-family:var(--serif);font-weight:300;font-size:64px;line-height:1;color:var(--gold);margin:10px 0 6px}
+.preco small{font-size:26px;vertical-align:super}
+.preco-nota{font-size:13px;color:var(--white-dim);margin-bottom:26px;line-height:1.6}
+.assinatura{display:flex;gap:14px;align-items:center;margin-top:30px}
+.assinatura p{margin:0;font-size:14px;line-height:1.5}
+.assinatura .nome{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--white)}
+.disclaimer{padding:40px 0 20px;font-size:11px;line-height:1.7;color:rgba(200,191,168,0.45);text-align:center}
+
+/* DADOS */
+.dados h2{font-family:var(--serif);font-weight:300;font-size:32px;line-height:1.2;margin-bottom:10px}
+.dados p{color:var(--white-dim);font-size:15px;line-height:1.7;margin-bottom:26px}
+.campo{margin-bottom:14px}
+.campo label{display:block;font-size:13px;color:var(--white-dim);margin-bottom:6px}
+.campo input{width:100%;background:var(--ink);border:1px solid var(--line);color:var(--white);padding:15px 16px;font-family:var(--sans);font-size:16px;outline:none}
+.campo input:focus{border-color:var(--gold)}
+.erro{color:#E8A08A;font-size:13px;margin:-4px 0 12px;display:none}
+
+/* QUIZ */
+.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:13px;color:var(--white-dim)}
+.voltar{background:none;border:none;color:var(--white-dim);cursor:pointer;font-size:13px;padding:6px 0;visibility:hidden}
+.voltar.on{visibility:visible}
+.barra{height:2px;background:rgba(201,168,76,0.15);margin-bottom:44px}
+.barra i{display:block;height:100%;background:var(--gold);width:0;transition:width .35s ease}
+.pergunta{font-family:var(--serif);font-weight:400;font-size:clamp(24px,5.5vw,30px);line-height:1.35;margin-bottom:34px;min-height:3.6em}
+.opcoes{display:flex;flex-direction:column;gap:10px}
+.opcao{background:var(--ink);border:1px solid rgba(201,168,76,0.12);color:var(--white-dim);text-align:left;padding:17px 20px;font-size:16px;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.opcao:hover{border-color:rgba(201,168,76,0.5);color:var(--white)}
+.opcao.sel{border-color:var(--gold);color:var(--white);background:rgba(201,168,76,0.08)}
+.quiz-nota{margin-top:30px;font-size:13px;color:rgba(200,191,168,0.5);line-height:1.6}
+
+/* LOADING */
+.carregando{min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.carregando p{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--white-dim);max-width:18em;line-height:1.4}
+.pulso{width:54px;height:54px;border:1px solid var(--gold);transform:rotate(45deg);margin-bottom:34px;animation:pulso 1.6s ease-in-out infinite}
+@keyframes pulso{0%,100%{opacity:.25}50%{opacity:1}}
+
+/* BLOQUEADO */
+.timer{position:fixed;left:0;right:0;top:0;z-index:50;background:rgba(20,18,16,0.96);border-bottom:1px solid var(--line);padding:10px 18px;padding-top:calc(10px + env(safe-area-inset-top,0px));display:none;align-items:center;justify-content:center;gap:12px;font-size:13px;color:var(--white-dim)}
+.timer.on{display:flex}
+.timer b{font-family:var(--serif);font-size:22px;color:var(--gold);font-weight:500;min-width:3.2em;text-align:center}
+.bloq-head{text-align:center;margin-bottom:34px}
+.bloq-head .kicker{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:18px;margin-bottom:10px}
+.bloq-head h1{font-family:var(--serif);font-weight:300;font-size:clamp(30px,7vw,44px);line-height:1.15}
+.nome-velado{display:inline-block;filter:blur(9px);user-select:none;color:var(--gold-light)}
+.dims{margin:30px 0 8px;padding:26px 22px;background:var(--ink);border:1px solid var(--line)}
+.dims h3{font-size:13px;font-weight:500;color:var(--white-dim);margin-bottom:18px}
+.dim{margin-bottom:16px}
+.dim:last-child{margin-bottom:0}
+.dim-top{display:flex;justify-content:space-between;font-size:14px;margin-bottom:7px;color:var(--white)}
+.dim-top span:last-child{color:var(--white-dim);font-size:13px}
+.dim-trilho{height:6px;background:rgba(201,168,76,0.1);position:relative}
+.dim-trilho i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--gold-dim),var(--gold))}
+.dim-trilho::before,.dim-trilho::after{content:'';position:absolute;top:-3px;bottom:-3px;width:1px;background:rgba(245,240,232,0.18)}
+.dim-trilho::before{left:38.1%}
+.dim-trilho::after{left:66.7%}
+.bloq-texto{font-size:17px;line-height:1.8;color:var(--white-dim);margin:26px 0}
+.bloq-texto strong{color:var(--white);font-weight:500}
+.expirado{font-size:13px;color:var(--white-dim);margin:-14px 0 22px;line-height:1.6}
+
+/* RESULTADO */
+.leitura-barra{position:fixed;top:0;left:0;height:2px;background:var(--gold);width:0;z-index:60}
+.res-head{padding:84px 0 40px;text-align:left;background:radial-gradient(110% 70% at 0% 0%,var(--wine) 0%,rgba(10,10,10,0) 65%)}
+.res-head .kicker{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:18px;margin-bottom:14px}
+.res-head h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,9vw,64px);line-height:1.02;letter-spacing:-0.01em}
+.res-head .frase{font-family:var(--serif);font-style:italic;font-size:clamp(21px,4.6vw,27px);line-height:1.4;color:var(--gold-light);margin-top:22px;max-width:24em}
+.res-head .para{margin-top:18px;font-size:14px;color:var(--white-dim)}
+.painel{background:var(--ink);border:1px solid var(--line);padding:26px 22px;margin-bottom:34px}
+.painel .perfis{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.painel .perfis div span{display:block;font-size:12px;color:var(--white-dim);margin-bottom:4px}
+.painel .perfis div strong{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.2;color:var(--white)}
+.painel .integrada{font-size:15px;line-height:1.75;color:var(--white-dim);margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.sumario{margin:0 0 50px;padding:0;list-style:none;border-top:1px solid var(--line)}
+.sumario li{border-bottom:1px solid var(--line)}
+.sumario a{display:flex;gap:14px;padding:12px 2px;color:var(--white-dim);text-decoration:none;font-size:15px}
+.sumario a:hover{color:var(--white)}
+.sumario a span{font-family:var(--serif);color:var(--gold);min-width:1.6em}
+.sumario-titulo{font-family:var(--serif);font-size:22px;margin-bottom:12px;color:var(--white)}
+.texto{max-width:34em}
+.texto section{padding-top:18px;margin-bottom:54px;scroll-margin-top:24px}
+.texto h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,6vw,36px);line-height:1.15;color:var(--white);margin-bottom:22px}
+.texto h2 small{display:block;font-family:var(--sans);font-size:13px;color:var(--gold);font-weight:500;margin-bottom:8px}
+.texto p{font-size:18.5px;line-height:1.8;color:#E4DDCF;margin-bottom:20px;font-weight:300}
+.texto p strong{font-weight:500;color:var(--white)}
+.texto ul{margin:0 0 22px 0;padding:0;list-style:none}
+.texto ul li{font-size:18px;line-height:1.7;color:#E4DDCF;font-weight:300;padding:8px 0 8px 26px;position:relative}
+.texto ul li::before{content:'';position:absolute;left:3px;top:20px;width:8px;height:8px;border:1px solid var(--gold);transform:rotate(45deg)}
+.texto blockquote.fala{font-family:var(--serif);font-style:italic;font-size:clamp(23px,5vw,28px);line-height:1.45;color:var(--gold-light);border-left:2px solid var(--gold);padding:6px 0 6px 22px;margin:28px 0}
+.texto blockquote.fala em{font-style:italic}
+.exercicio{background:var(--ink);border:1px solid var(--line);padding:22px 22px 6px;margin-bottom:14px}
+.exercicio h4{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.3;color:var(--white);margin-bottom:10px;display:flex;gap:12px;align-items:baseline}
+.exercicio h4 span{color:var(--gold);font-size:26px}
+.exercicio p{font-size:17px}
+.semana{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:start;padding:16px 0;border-top:1px solid var(--line)}
+.semana:last-of-type{border-bottom:1px solid var(--line)}
+.semana input{appearance:none;-webkit-appearance:none;width:24px;height:24px;border:1px solid var(--gold);background:transparent;cursor:pointer;margin-top:3px;grid-row:span 2;position:relative}
+.semana input:checked{background:var(--gold)}
+.semana input:checked::after{content:'';position:absolute;left:7px;top:3px;width:6px;height:12px;border:solid var(--black);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.semana-n{font-size:13px;font-weight:500;color:var(--gold)}
+.semana p{margin:0;font-size:17px}
+.semana.feita p{color:var(--white-dim);text-decoration:line-through;text-decoration-color:rgba(201,168,76,0.5)}
+.final{border-top:1px solid var(--line);padding-top:30px;margin-top:10px}
+.final p{font-size:13px;line-height:1.7;color:rgba(200,191,168,0.6)}
+.final .crm{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--white-dim)}
+@media (min-width:760px){
+  .texto p{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="leitura-barra" id="leituraBarra"></div>
+<div class="timer" id="timer" role="status"><span>O preço especial de R$69,90 termina em</span><b id="timerCount">15:00</b></div>
+
+<!-- OFERTA -->
+<div class="screen" id="s-oferta">
+  <header class="oferta-hero">
+    <div class="wrap">
+      <p class="marca">A Camada Oculta</p>
+      <h1 class="hl">Você descobriu o seu padrão. <span class="veu velado" id="veu">Agora descubra o que ele esconde.</span></h1>
+      <p class="lead" id="gancho">Nenhum padrão vive sozinho. Ele se mistura com outros, e é nessa mistura que estão as reações que você ainda não entende em si.</p>
+      <div class="hero-cta">
+        <button class="btn" type="button" data-acao="comecar">Responder as 35 perguntas</button>
+        <p class="small">Cerca de 6 minutos. Você responde primeiro e só paga se quiser ver o resultado.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap" style="padding-top:0;padding-bottom:0">
+    <section class="oferta-bloco">
+      <h2>Talvez você já tenha percebido que não ama de um jeito só.</h2>
+      <ul class="contradicoes">
+        <li>Você quer perto, mas afasta.</li>
+        <li>Precisa de alguém, mas não aceita ajuda.</li>
+        <li>Se entrega inteira, e depois some.</li>
+        <li>Parece forte por fora e vive em alerta por dentro.</li>
+      </ul>
+      <p style="margin-top:22px">O resultado que você acabou de ler mostrou o padrão que aparece primeiro. Mas, quando você sente medo de perder alguém, ou medo de depender, outras forças entram em cena. Elas se combinam, disputam espaço e explicam aquilo que você faz e depois não sabe dizer por quê.</p>
+      <p>É essa combinação que a segunda etapa revela.</p>
+    </section>
+
+    <section class="oferta-bloco">
+      <h2>O que você vai descobrir</h2>
+      <ul class="recebe">
+        <li><strong>Qual dos 10 perfis híbridos é o seu</strong>, ou, se as suas respostas não couberem em nenhum deles, um mapa feito sob medida.</li>
+        <li><strong>As suas 5 dimensões emocionais</strong> com a sua pontuação: apego ansioso, apego evitativo, dependência, hiperindependência e segurança afetiva.</li>
+        <li><strong>De onde esse padrão costuma vir</strong> e qual é a função de proteção que ele cumpre na sua vida.</li>
+        <li><strong>Como ele aparece nos seus relacionamentos</strong> e os sinais que merecem a sua atenção.</li>
+        <li><strong>Exercícios e um plano de quatro semanas</strong> para você começar a mudar a forma como reage.</li>
+        <li><strong>A leitura integrada</strong> com o resultado que você acabou de ver na primeira etapa.</li>
+      </ul>
+    </section>
+
+    <section class="oferta-bloco">
+      <h2>Como funciona</h2>
+      <ol class="passos">
+        <li>Você responde 35 perguntas novas. Não precisa refazer o primeiro teste.</li>
+        <li>O sistema calcula as suas cinco dimensões e identifica a sua combinação.</li>
+        <li>Você libera o resultado e lê tudo na hora, aqui na página. Uma cópia também chega no seu e-mail.</li>
+      </ol>
+      <div class="preco-box">
+        <p class="de">Preço especial logo após o resultado</p>
+        <div class="preco"><small>R$</small>69<span style="font-size:38px">,90</span></div>
+        <p class="preco-nota">Pagamento único. Compra segura pela Hotmart, com garantia de 7 dias.</p>
+        <button class="btn btn-block" type="button" data-acao="comecar">Quero descobrir a minha Camada Oculta</button>
+      </div>
+      <div class="assinatura">
+        <div>
+          <p class="nome">Dra. Aline Zanette</p>
+          <p class="small">Médica, Saúde Mental. CRM 36587</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="disclaimer">Ferramenta de autoconhecimento. Não é diagnóstico médico ou psicológico e não substitui a avaliação individual de um profissional habilitado.</p>
+  </div>
+</div>
+
+<!-- DADOS -->
+<div class="screen" id="s-dados">
+  <div class="wrap dados">
+    <h2>Antes de começar</h2>
+    <p>Use o mesmo e-mail que você usou no primeiro teste. É para ele que vamos enviar a sua leitura.</p>
+    <div class="campo"><label for="inNome">Seu nome</label><input id="inNome" type="text" autocomplete="given-name"></div>
+    <div class="campo"><label for="inEmail">Seu e-mail</label><input id="inEmail" type="email" autocomplete="email" inputmode="email"></div>
+    <p class="erro" id="erroDados">Preencha o seu nome e um e-mail válido para continuar.</p>
+    <button class="btn btn-block" type="button" data-acao="salvarDados">Começar as perguntas</button>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="s-quiz">
+  <div class="wrap">
+    <div class="quiz-top"><button class="voltar" id="btnVoltar" type="button" data-acao="voltar">Voltar</button><span id="quizCont">1 de 35</span></div>
+    <div class="barra"><i id="quizBarra"></i></div>
+    <p class="pergunta" id="quizTexto"></p>
+    <div class="opcoes" id="quizOpcoes"></div>
+    <p class="quiz-nota">Responda pensando em como você costuma agir e sentir nos relacionamentos afetivos, principalmente nos últimos seis meses. Não existem respostas certas ou erradas.</p>
+  </div>
+</div>
+
+<!-- CARREGANDO -->
+<div class="screen" id="s-carregando">
+  <div class="wrap carregando"><div class="pulso"></div><p>Cruzando as suas cinco dimensões com o seu primeiro resultado...</p></div>
+</div>
+
+<!-- BLOQUEADO -->
+<div class="screen" id="s-bloqueado">
+  <div class="wrap" style="padding-top:88px">
+    <div class="bloq-head">
+      <p class="kicker" id="bloqKicker">A sua leitura está pronta</p>
+      <h1 id="bloqTitulo"></h1>
+    </div>
+    <div class="dims" id="bloqDims"></div>
+    <p class="small center">As linhas marcam as faixas: baixa (até 7), intermediária (8 a 13) e elevada (14 a 21).</p>
+    <div class="bloq-texto" id="bloqTexto"></div>
+    <div class="preco-box">
+      <p class="de" id="bloqDe">Preço especial por 15 minutos</p>
+      <div class="preco" id="bloqPreco"><small>R$</small>69<span style="font-size:38px">,90</span></div>
+      <p class="expirado" id="bloqExpirado" hidden>O preço especial de R$69,90 era válido por 15 minutos depois do resultado.</p>
+      <p class="preco-nota">Leitura completa na hora, aqui na página, e uma cópia no seu e-mail. Pagamento único, garantia de 7 dias.</p>
+      <button class="btn btn-block" type="button" data-acao="checkout">Liberar a minha Camada Oculta</button>
+    </div>
+    <p class="disclaimer">Ferramenta de autoconhecimento. Não é diagnóstico médico ou psicológico e não substitui a avaliação individual de um profissional habilitado.</p>
+  </div>
+</div>
+
+<!-- RESULTADO -->
+<div class="screen" id="s-resultado">
+  <div class="wrap" style="padding-top:0">
+    <header class="res-head" id="resHead"></header>
+    <div class="painel" id="resPainel"></div>
+    <nav aria-label="Sumário"><p class="sumario-titulo">Nesta leitura</p><ol class="sumario" id="resSumario"></ol></nav>
+    <article class="texto" id="resTexto"></article>
+    <div class="final">
+      <p>Este resultado é uma leitura das suas respostas, pensada para o autoconhecimento. Ele não define quem você é, não comprova o que aconteceu na sua história e não substitui uma avaliação profissional. Se algum relacionamento seu envolve ameaça, controle ou violência, a sua segurança vem primeiro. Nesse caso, não use os exercícios de aproximação com essa pessoa e procure ajuda.</p>
+      <p class="crm">Dra. Aline Zanette, Médica, Saúde Mental. CRM 36587</p>
+    </div>
+  </div>
+</div>
+
+<script src="camada-logic.js"></script>
+<script src="camada-textos.js"></script>
+<script>
+(function(){
+  var L = window.CamadaLogic, T = window.CAMADA_TEXTOS;
+
+  // Ofertas da Hotmart (produto X106366253K). Codigos na coluna "Codigo" de Precificacao e ofertas.
+  var HOTMART_PRODUTO = 'X106366253K';
+  var OFERTA_ESPECIAL = 'ymk5cp12'; // R$69,90, nos 15 minutos apos o resultado
+  var OFERTA_CHEIA = 'ui4gakw6';      // R$97,00, depois que o tempo acaba
+  var MINUTOS = 15;
+
+  var PERGUNTAS = [
+    'Tenho receio de que uma pessoa importante se afaste de mim, mesmo quando não há um motivo claro.',
+    'Quando alguém demora a responder minhas mensagens, começo a imaginar que algo mudou entre nós.',
+    'Preciso de demonstrações frequentes de carinho para me sentir segura(o) em um relacionamento.',
+    'Pequenas mudanças no comportamento de alguém importante podem me deixar emocionalmente inquieta(o).',
+    'Tenho dificuldade em ficar tranquila(o) quando não sei o que a pessoa sente por mim.',
+    'Quando percebo distanciamento afetivo, sinto vontade de procurar ainda mais a pessoa.',
+    'O medo de perder alguém pode influenciar minhas decisões em um relacionamento.',
+    'Sinto desconforto quando alguém começa a se aproximar emocionalmente demais de mim.',
+    'Quando uma relação se torna muito íntima, sinto necessidade de criar algum distanciamento.',
+    'Tenho dificuldade em compartilhar sentimentos profundos, mesmo com pessoas próximas.',
+    'Quando alguém demonstra muita necessidade de proximidade, posso sentir vontade de me afastar.',
+    'Prefiro resolver meus conflitos emocionais sozinha(o), evitando conversar sobre eles.',
+    'Às vezes, diminuo a importância de uma relação para não me sentir vulnerável.',
+    'Quando sinto que alguém espera muito de mim emocionalmente, tendo a me fechar.',
+    'Tenho dificuldade em tomar decisões importantes sem a aprovação de alguém significativo.',
+    'Já deixei de expressar uma necessidade minha por medo de desagradar alguém que amo.',
+    'Meu bem-estar emocional depende muito de como está meu relacionamento.',
+    'Tenho dificuldade em estabelecer limites quando temo perder o afeto de alguém.',
+    'Já permaneci em situações afetivas insatisfatórias por medo de ficar sozinha(o).',
+    'Costumo colocar as necessidades emocionais de outra pessoa acima das minhas, mesmo quando isso me prejudica.',
+    'Sinto que perder um relacionamento pode comprometer profundamente minha percepção de valor pessoal.',
+    'Tenho dificuldade em pedir ajuda, mesmo quando estou emocionalmente sobrecarregada(o).',
+    'Sinto que depender de alguém emocionalmente pode me colocar em uma posição de vulnerabilidade.',
+    'Prefiro assumir tudo sozinha(o) a correr o risco de me decepcionar com outra pessoa.',
+    'Quando estou sofrendo, costumo esconder meus sentimentos e demonstrar que está tudo bem.',
+    'Sinto necessidade de manter controle sobre minha vida para não precisar contar com ninguém.',
+    'Tenho dificuldade em aceitar cuidado ou apoio, mesmo quando alguém o oferece sinceramente.',
+    'Aprendi a acreditar que preciso ser forte o tempo todo e não demonstrar necessidade emocional.',
+    'Consigo demonstrar afeto sem sentir que preciso abrir mão da minha individualidade.',
+    'Consigo conversar sobre minhas necessidades emocionais sem recorrer a ameaças ou afastamentos.',
+    'Quando surge um conflito, consigo considerar tanto meus sentimentos quanto os da outra pessoa.',
+    'Consigo respeitar o espaço de alguém sem interpretar automaticamente isso como rejeição.',
+    'Sinto que posso estabelecer limites e continuar sendo merecedora(or) de afeto.',
+    'Consigo receber apoio emocional sem sentir que isso diminui minha autonomia.',
+    'Mesmo diante de dificuldades afetivas, consigo reconhecer meu próprio valor.'
+  ];
+  var OPCOES = [['Nunca ou quase nunca',0],['Às vezes',1],['Frequentemente',2],['Quase sempre ou sempre',3]];
+
+  var GANCHOS = {
+    ansioso: 'Você acabou de ler que ama com medo de perder. O que ainda ninguém te mostrou é o que esse medo faz quando você tenta se proteger dele.',
+    evitativo: 'Você acabou de ler que se afasta quando alguém chega perto demais. O que você ainda não sabe é do que você está se protegendo.',
+    seguro: 'Você acabou de ler que consegue amar sem se perder. Mas segurança não é ausência de medo. Existe uma camada que o seu resultado ainda não mostrou.',
+    dependente: 'Você acabou de ler que entrega a sua estabilidade nas mãos dos outros. O que você ainda não viu é o que se esconde por trás dessa entrega.',
+    hiperindependente: 'Você acabou de ler que aprendeu a não precisar de ninguém. O que você ainda não sabe é quanto isso te custa, e o que ficou guardado do outro lado.'
+  };
+
+  // ---------- estado ----------
+  function ler(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } }
+  function gravar(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+  var params = new URLSearchParams(location.search);
+  var st = ler('qvst3') || {};
+  if (params.get('p') && L.E1_NOMES[params.get('p')]) st.e1 = params.get('p');
+  if (params.get('n')) st.nome = params.get('n').slice(0,60);
+  if (params.get('e')) st.email = params.get('e').slice(0,120);
+  var voltouDoCheckout = !!(params.get('transaction') || params.get('itm_source') === 'thankyoupage' || params.get('aff'));
+  var pendente = false;
+  try { pendente = sessionStorage.getItem('qvst_pending_tier') === '3' || !!localStorage.getItem('qvst3_pendente'); } catch(e){}
+
+  var viaLink = params.get('r') ? L.decodificar(params.get('r')) : null;
+  if (viaLink) {
+    st.cod = params.get('r'); st.e1 = viaLink.e1 || st.e1; st.pago = true;
+    if (params.get('n')) st.nome = params.get('n').slice(0,60);
+  } else if (voltouDoCheckout && st.cod && pendente) {
+    st.pago = true;
+  }
+  gravar('qvst3', st);
+  if (st.pago) { try { localStorage.removeItem('qvst3_pendente'); sessionStorage.removeItem('qvst_pending_tier'); } catch(e){} }
+
+  // ---------- navegacao ----------
+  function ir(id){
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+    document.getElementById('timer').classList.toggle('on', id === 's-bloqueado' && !precoExpirado());
+  }
+  function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function primeiroNome(n){ return String(n || '').trim().split(/\s+/)[0] || ''; }
+
+  // ---------- oferta ----------
+  function mostrarOferta(){
+    if (st.e1 && GANCHOS[st.e1]) document.getElementById('gancho').textContent = GANCHOS[st.e1];
+    ir('s-oferta');
+    requestAnimationFrame(function(){ setTimeout(function(){ document.getElementById('veu').classList.remove('velado'); }, 50); });
+  }
+  function comecar(){
+    if (st.nome && st.email && /.+@.+\..+/.test(st.email)) iniciarQuiz();
+    else {
+      document.getElementById('inNome').value = st.nome || '';
+      document.getElementById('inEmail').value = st.email || '';
+      ir('s-dados');
+    }
+  }
+  function salvarDados(){
+    var n = document.getElementById('inNome').value.trim();
+    var e = document.getElementById('inEmail').value.trim();
+    var ok = n && /.+@.+\..+/.test(e);
+    document.getElementById('erroDados').style.display = ok ? 'none' : 'block';
+    if (!ok) return;
+    st.nome = n.slice(0,60); st.email = e.slice(0,120); gravar('qvst3', st);
+    iniciarQuiz();
+  }
+
+  // ---------- quiz ----------
+  var atual = 0, resp = [];
+  function iniciarQuiz(){
+    resp = (st.resp && st.resp.length === 35 && !st.cod) ? st.resp.slice() : [];
+    atual = Math.min(resp.length, 34);
+    desenharPergunta(); ir('s-quiz');
+    try { fbq('trackCustom', 'CamadaIniciouQuiz'); } catch(e){}
+  }
+  function desenharPergunta(){
+    document.getElementById('quizCont').textContent = (atual+1) + ' de 35';
+    document.getElementById('quizBarra').style.width = (atual/35*100) + '%';
+    document.getElementById('quizTexto').textContent = PERGUNTAS[atual];
+    document.getElementById('btnVoltar').classList.toggle('on', atual > 0);
+    var box = document.getElementById('quizOpcoes'); box.innerHTML = '';
+    OPCOES.forEach(function(o){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'opcao' + (resp[atual] === o[1] ? ' sel' : ''); b.textContent = o[0];
+      b.addEventListener('click', function(){ responder(o[1], b); });
+      box.appendChild(b);
+    });
+  }
+  var travado = false;
+  function responder(v, b){
+    if (travado) return; travado = true;
+    b.classList.add('sel'); resp[atual] = v;
+    st.resp = resp.slice(); gravar('qvst3', st);
+    setTimeout(function(){
+      travado = false;
+      if (atual < 34) { atual++; desenharPergunta(); }
+      else concluir();
+    }, 260);
+  }
+  function voltar(){ if (atual > 0) { atual--; desenharPergunta(); } }
+  function concluir(){
+    var s = L.pontuar(resp);
+    st.cod = L.codificar(st.e1, s); delete st.resp; gravar('qvst3', st);
+    ir('s-carregando');
+    setTimeout(mostrarBloqueado, 2600);
+  }
+
+  // ---------- preco e contagem ----------
+  function fimDoTimer(){
+    var fim = ler('qvst3_timer_fim');
+    if (!fim) { fim = Date.now() + MINUTOS*60*1000; gravar('qvst3_timer_fim', fim); }
+    return fim;
+  }
+  function precoExpirado(){ var f = ler('qvst3_timer_fim'); return !!f && Date.now() >= f; }
+  var intervalo = null;
+  function atualizarPreco(){
+    var exp = precoExpirado();
+    document.getElementById('bloqPreco').innerHTML = exp ? '<small>R$</small>97<span style="font-size:38px">,00</span>' : '<small>R$</small>69<span style="font-size:38px">,90</span>';
+    document.getElementById('bloqDe').textContent = exp ? 'Preço da Camada Oculta' : 'Preço especial por 15 minutos';
+    document.getElementById('bloqExpirado').hidden = !exp;
+    document.getElementById('timer').classList.toggle('on', !exp && document.getElementById('s-bloqueado').classList.contains('active'));
+  }
+  function iniciarTimer(){
+    var fim = fimDoTimer();
+    clearInterval(intervalo);
+    function tick(){
+      var r = Math.max(0, Math.round((fim - Date.now())/1000));
+      document.getElementById('timerCount').textContent = String(Math.floor(r/60)).padStart(2,'0') + ':' + String(r%60).padStart(2,'0');
+      if (r <= 0) { clearInterval(intervalo); atualizarPreco(); }
+    }
+    tick(); intervalo = setInterval(tick, 1000); atualizarPreco();
+  }
+
+  // ---------- barras ----------
+  function barras(s){
+    return L.DIMS.map(function(d){
+      return '<div class="dim"><div class="dim-top"><span>' + L.DIM_NOMES[d] + '</span><span>' + s[d] + '/21, ' + L.faixa(s[d]) + '</span></div>'
+        + '<div class="dim-trilho"><i style="width:' + (s[d]/21*100).toFixed(1) + '%"></i></div></div>';
+    }).join('');
+  }
+
+  // ---------- bloqueado ----------
+  function mostrarBloqueado(){
+    var dec = L.decodificar(st.cod); if (!dec) { mostrarOferta(); return; }
+    var r = L.classificar(dec.s, st.e1);
+    var nome = primeiroNome(st.nome);
+    document.getElementById('bloqDims').innerHTML = '<h3>As suas cinco dimensões' + (nome ? ', ' + esc(nome) : '') + '</h3>' + barras(dec.s);
+    if (r.tipo === 'perfil') {
+      document.getElementById('bloqKicker').textContent = 'O seu perfil híbrido foi identificado';
+      document.getElementById('bloqTitulo').innerHTML = 'Você é <span class="nome-velado" aria-hidden="true">' + esc(L.NOMES[r.key]) + '</span><span style="position:absolute;left:-9999px">um dos 10 perfis híbridos</span>';
+      document.getElementById('bloqTexto').innerHTML = '<p>As suas respostas formaram <strong>uma das 10 combinações</strong> que este teste descreve. A leitura completa mostra de onde ela costuma vir, como aparece nos seus relacionamentos, a função de proteção que ela cumpre e o que fazer a partir daqui, com exercícios e um plano de quatro semanas.</p>';
+    } else {
+      document.getElementById('bloqKicker').textContent = 'As suas respostas não cabem numa caixa só';
+      document.getElementById('bloqTitulo').textContent = 'Você tem um mapa emocional próprio';
+      document.getElementById('bloqTexto').innerHTML = '<p>As suas respostas <strong>não formaram nenhuma das 10 combinações</strong> deste teste. Em vez de te encaixar num perfil que não seria o seu, a Dra. Aline preparou uma leitura sob medida, dimensão por dimensão, a partir das suas pontuações reais, conectada ao seu primeiro resultado.</p>';
+    }
+    ir('s-bloqueado'); iniciarTimer();
+    try { fbq('trackCustom', 'CamadaResultadoBloqueado', { tipo: r.tipo }); } catch(e){}
+  }
+  function checkout(){
+    var oferta = precoExpirado() ? OFERTA_CHEIA : OFERTA_ESPECIAL;
+    var url = 'https://pay.hotmart.com/' + HOTMART_PRODUTO + '?off=' + oferta + '&checkoutMode=10&sck=' + encodeURIComponent(st.cod);
+    if (st.email) url += '&email=' + encodeURIComponent(st.email);
+    if (st.nome) url += '&name=' + encodeURIComponent(st.nome);
+    try { sessionStorage.setItem('qvst_pending_tier', '3'); localStorage.setItem('qvst3_pendente', String(Date.now())); } catch(e){}
+    try { fbq('track', 'InitiateCheckout', { value: precoExpirado() ? 97 : 69.9, currency: 'BRL', content_name: 'A Camada Oculta' }); } catch(e){}
+    window.open(url, '_blank');
+  }
+
+  // ---------- resultado ----------
+  function mostrarResultado(){
+    var dec = L.decodificar(st.cod); if (!dec) { mostrarOferta(); return; }
+    var s = dec.s, e1 = st.e1 || dec.e1;
+    var r = L.classificar(s, e1);
+    var nome = primeiroNome(st.nome);
+    var nomeE1 = e1 ? L.E1_NOMES[e1] : '';
+    var titulo, frase, secoes;
+    if (r.tipo === 'perfil') {
+      var p = T.perfis[r.key];
+      titulo = p.nome; frase = p.frase;
+      secoes = p.secoes.map(function(x){ return { t: x.t, h: x.h }; });
+    } else {
+      titulo = L.NOMES.mapa; frase = T.mapa.frase;
+      var TIT = { abertura: 'O seu mapa', baixas: 'Um mapa discreto', AD: 'Quando o medo de perder encontra a necessidade do outro', fechamento: 'Juntando as peças' };
+      secoes = L.blocosMapa(s).map(function(k){
+        var b = T.mapa[k];
+        return { t: TIT[k] || b.t, h: b.h.replace(/\{\{perfil_etapa1\}\}/g, nomeE1 ? esc(nomeE1) : 'o que você viu no seu primeiro resultado') };
+      });
+    }
+    document.getElementById('resHead').innerHTML =
+      '<p class="kicker">A Camada Oculta</p><h1>' + esc(titulo) + '</h1><p class="frase">' + esc(frase) + '</p>'
+      + (nome ? '<p class="para">Leitura preparada para ' + esc(nome) + '</p>' : '');
+    var integrada = nomeE1
+      ? 'Na primeira etapa, as suas respostas apontaram para ' + esc(nomeE1) + '. Nesta segunda avaliação, a combinação das cinco dimensões gerou ' + (r.tipo === 'perfil' ? esc(titulo) : 'um mapa próprio') + '. O primeiro resultado descreve a tendência que aparece primeiro; este explora as nuances que convivem com ela. Se os dois parecerem diferentes, isso é informação para reflexão, e não um erro.'
+      : 'A combinação das suas cinco dimensões gerou ' + (r.tipo === 'perfil' ? esc(titulo) : 'um mapa próprio') + '. Ela mostra as nuances que convivem com o padrão que aparece primeiro em você.';
+    document.getElementById('resPainel').innerHTML =
+      '<div class="perfis"><div><span>Seu perfil inicial</span><strong>' + (nomeE1 ? esc(nomeE1) : 'Primeira etapa') + '</strong></div>'
+      + '<div><span>Sua camada oculta</span><strong>' + esc(titulo) + '</strong></div></div>'
+      + barras(s) + '<p class="integrada">' + integrada + '</p>';
+    document.getElementById('resSumario').innerHTML = secoes.map(function(x,i){
+      return '<li><a href="#sec' + i + '"><span>' + (i+1) + '</span>' + esc(x.t) + '</a></li>';
+    }).join('');
+    document.getElementById('resTexto').innerHTML = secoes.map(function(x,i){
+      return '<section id="sec' + i + '"><h2>' + esc(x.t) + '</h2>' + x.h + '</section>';
+    }).join('');
+    // semanas marcaveis (guardadas so neste navegador)
+    var chave = 'qvst3_semanas_' + st.cod, feitas = ler(chave) || {};
+    document.querySelectorAll('#resTexto .semana').forEach(function(el){
+      var w = el.getAttribute('data-w');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.checked = !!feitas[w]; cb.setAttribute('aria-label', 'Marcar a semana ' + w + ' como feita');
+      el.insertBefore(cb, el.firstChild); el.classList.toggle('feita', cb.checked);
+      cb.addEventListener('change', function(){ feitas[w] = cb.checked; gravar(chave, feitas); el.classList.toggle('feita', cb.checked); });
+    });
+    ir('s-resultado');
+    window.addEventListener('scroll', progressoLeitura, { passive: true }); progressoLeitura();
+  }
+  function progressoLeitura(){
+    var el = document.getElementById('s-resultado');
+    if (!el.classList.contains('active')) return;
+    var h = document.documentElement.scrollHeight - innerHeight;
+    document.getElementById('leituraBarra').style.width = (h > 0 ? Math.min(100, scrollY/h*100) : 0) + '%';
+  }
+
+  // ---------- acoes ----------
+  document.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-acao]'); if (!b) return;
+    var a = b.getAttribute('data-acao');
+    if (a === 'comecar') comecar();
+    else if (a === 'salvarDados') salvarDados();
+    else if (a === 'voltar') voltar();
+    else if (a === 'checkout') checkout();
+  });
+
+  // ---------- inicio ----------
+  if (st.pago && st.cod) mostrarResultado();
+  else if (st.cod) mostrarBloqueado();
+  else mostrarOferta();
+})();
+</script>
+</body>
+</html>
