@@ -262,6 +262,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
       <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/af8f565d-5564-4b00-a70d-873f0cc72501/players/6aae40e93be3e7a277da6dbf/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
     <p class="video-caption">Dra. Aline Zanette · Médica, Saúde Mental · CRM 36587</p>
+<div style="text-align:center;margin:28px 0 6px;"><button class="btn-hero" onclick="event.stopPropagation();goTo('screen-hero');" type="button" style="cursor:pointer">👉 Quero Entender Meu Padrão</button></div>
 
     <div class="intro-divider"></div>
 
@@ -321,7 +322,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
       </div>
       <p class="intro-cta-final"><strong>Quem você se tornou?</strong><br>E, talvez ainda mais importante:<br><strong>Por que você se tornou assim?</strong></p>
       <button class="btn-hero" onclick="event.stopPropagation();goTo('screen-hero');" type="button" style="cursor:pointer">👉 Quero Entender Meu Padrão</button>
-      <p class="hero-note" style="margin-top:14px;">Diagnóstico grátis · Perfil completo a partir de R$29,90 · Garantia de 7 dias</p>
+      <p class="hero-note" style="margin-top:14px;">Teste gratuito · Resultado a partir de R$29,90 · Garantia de 7 dias</p>
     </div>
 
     <p style="font-size:11px;color:rgba(200,191,168,0.4);text-align:center;max-width:440px;margin:28px auto 0;line-height:1.7;">Ferramenta de autoconhecimento — não é diagnóstico médico ou psicológico e não substitui avaliação individual realizada por profissional habilitado.</p>
@@ -356,7 +357,7 @@ body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;mi
         <div><span class="stat-num">6</span><span class="stat-label">Perfis</span></div>
       </div>
       <button class="btn-hero" onclick="event.stopPropagation();goTo('screen-capture');" type="button" style="cursor:pointer;position:relative;z-index:9999">Descobrir Quem Me Tornei</button>
-      <p class="hero-note">Diagnóstico grátis · Perfil completo a partir de R$29,90</p>
+      <p class="hero-note">Teste gratuito · Resultado a partir de R$29,90</p>
     </div>
   </section>
 </div>
@@ -755,42 +756,35 @@ function showResult(){
   let html = `
     <div class="result-header">
       <p class="result-meta">Análise Concluída</p>
-      <span class="result-badge ${currentLevel.badge}">${currentLevel.label}</span>
+      ${unlockedSteps > 0 ? `<span class="result-badge ${currentLevel.badge}">${currentLevel.label}</span>` : ''}
       <h2 class="result-name">${userName},<br>seu resultado chegou.</h2>
       <p class="result-score">Pontuação: ${totalScore} pontos</p>
     </div>
+`;
+  // Etapas: o teste (as perguntas) e gratuito.
+  // R$29,90 (tier 1) libera o Diagnostico Emocional.
+  // R$49,90 (tier 2) libera o Perfil Emocional Predominante com a analise completa (e o e-mail).
+  // Depois do tier 2 vem o convite da Camada Oculta (perfis hibridos).
+  const estiloOferta = `background:linear-gradient(135deg,rgba(10,10,10,0.95) 0%,rgba(30,22,5,0.98) 100%);border:1px solid rgba(201,168,76,0.45);padding:36px 28px;margin-bottom:20px;position:relative;overflow:hidden;text-align:center;`;
+  const filete = `<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),#fff8e1,var(--gold),transparent);"></div>`;
+  const selo = (t) => `<div style="display:inline-block;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);padding:5px 16px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">${t}</div>`;
+  const titulo = (a, b) => `<h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:6px;">${a}</h3>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;color:var(--gold);line-height:1.3;margin-bottom:18px;">${b}</h3>`;
+  const preco = (de, reais, cent) => `<div style="margin-bottom:20px;">
+        ${de ? `<div style="font-size:12px;color:rgba(200,191,168,0.5);margin-bottom:6px;">De <s>${de}</s> por apenas</div>` : ''}
+        <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;"><small style="font-size:22px;vertical-align:super;">R$</small>${reais}<span style="font-size:32px">,${cent}</span></div>
+      </div>`;
+  const rodapeOferta = `<p style="font-size:11px;color:rgba(200,191,168,0.35);margin-top:12px;">Acesso imediato · Análise personalizada para o seu resultado · Compra segura via Hotmart, garantia de 7 dias</p>`;
+  const blocoDiagnostico = `
     <div class="unlocked-box">
-      <p class="unlocked-label">Diagnóstico Emocional</p>
+      <p class="unlocked-label">Seu Diagnóstico Emocional</p>
       <div class="result-text">${currentLevel.diagnostico}</div>
     </div>
     <div class="section-sep"></div>`;
 
   if(unlockedSteps >= 2){
-    // Resultado completo desbloqueado (R$49,90) - texto aprofundado, sem foto (foto e so no e-mail)
+    // Perfil Emocional Predominante liberado (R$49,90): perfil + analise completa (a foto vai no e-mail)
     const deep = deepProfiles[profileKey];
-    html += `
-    <div class="unlocked-box">
-      <p class="unlocked-label">Seu Resultado Completo</p>
-      <div class="profile-card">
-        <div class="profile-name">${deep.h1}</div>
-        <div class="profile-subtitle">${deep.sub}</div>
-        <div class="profile-text">${deep.paras.map(p=>`<p>${p}</p>`).join('')}</div>
-        <div class="profile-phrase">${deep.quote}</div>
-      </div>
-    </div>
-    <div class="section-sep"></div>
-    <p style="font-size:12px;color:var(--white-dim);text-align:center;margin:-8px 0 20px;">Você também recebeu essa análise completa por e-mail, com uma ilustração exclusiva para o seu perfil.</p>
-    <div class="section-sep"></div>
-    <div style="background:radial-gradient(120% 90% at 50% 0%,#2A0E12 0%,rgba(10,10,10,0.98) 75%);border:1px solid rgba(201,168,76,0.45);padding:40px 26px;margin-bottom:20px;text-align:center;">
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);margin-bottom:14px;">A Camada Oculta</p>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:16px;">Você descobriu o seu padrão.<br><em style="color:var(--gold-light);">Agora descubra o que ele esconde.</em></h3>
-      <p style="font-size:15px;color:var(--white-dim);line-height:1.8;max-width:420px;margin:0 auto 26px;">Nenhum padrão vive sozinho. Em 35 perguntas novas, você descobre como ele se combina com outros e qual dos 10 perfis híbridos explica as reações que você ainda não entende em si.</p>
-      <a class="btn-unlock" href="camada-oculta.html?p=${encodeURIComponent(profileKey)}&n=${encodeURIComponent(userName)}&e=${encodeURIComponent(userEmail)}${modoDemo ? '&demo=' + DEMO_CHAVE : ''}" style="display:inline-block;text-decoration:none;padding:16px 36px;font-size:12px;letter-spacing:0.2em;">Quero ver a minha Camada Oculta</a>
-      <p style="font-size:11px;color:rgba(200,191,168,0.45);margin-top:12px;">Você responde primeiro e só paga se quiser ver o resultado.</p>
-    </div>
-    <div class="section-sep"></div>`;
-  } else if(unlockedSteps === 1){
-    // Resultado basico desbloqueado (R$29,90)
     html += `
     <div class="unlocked-box">
       <p class="unlocked-label">Seu Perfil Emocional Predominante</p>
@@ -806,38 +800,56 @@ function showResult(){
       </div>
     </div>
     <div class="section-sep"></div>
-    <div style="background:linear-gradient(135deg,rgba(10,10,10,0.95) 0%,rgba(30,22,5,0.98) 100%);border:1px solid rgba(201,168,76,0.45);padding:36px 28px;margin-bottom:20px;position:relative;overflow:hidden;text-align:center;">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),#fff8e1,var(--gold),transparent);"></div>
-      <div style="display:inline-block;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);padding:5px 16px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Vá mais fundo</div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:6px;">Resultado Completo</h3>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;color:var(--gold);line-height:1.3;margin-bottom:18px;">5 Perfis Emocionais</h3>
-      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 24px;">Esse foi só o resumo. Na análise completa, a Dra. Aline Zanette aprofunda de onde vem esse padrão, como ele aparece no seu dia a dia e qual o caminho possível a partir daqui - você recebe na hora aqui na página, e também por e-mail com uma ilustração exclusiva pro seu perfil.</p>
-      <div style="margin-bottom:20px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;"><small style="font-size:22px;vertical-align:super;">R$</small>49<span style="font-size:32px">,90</span></div>
+    <div class="unlocked-box">
+      <p class="unlocked-label">A Análise Completa do Seu Perfil</p>
+      <div class="profile-card">
+        <div class="profile-name">${deep.h1}</div>
+        <div class="profile-subtitle">${deep.sub}</div>
+        <div class="profile-text">${deep.paras.map(p=>`<p>${p}</p>`).join('')}</div>
+        <div class="profile-phrase">${deep.quote}</div>
       </div>
-      <button class="btn-unlock" onclick="abrirCheckout(2)" style="padding:16px 40px;font-size:12px;letter-spacing:0.25em;">Quero Meu Resultado Completo</button>
-      <p style="font-size:11px;color:rgba(200,191,168,0.35);margin-top:12px;">Acesso imediato · Análise personalizada para o seu resultado · Compra segura via Hotmart, garantia de 7 dias</p>
+    </div>
+    <p style="font-size:12px;color:var(--white-dim);text-align:center;margin:-8px 0 20px;">Você também recebeu essa análise completa por e-mail, com uma ilustração exclusiva para o seu perfil.</p>
+    <div class="section-sep"></div>
+    <div style="background:radial-gradient(120% 90% at 50% 0%,#2A0E12 0%,rgba(10,10,10,0.98) 75%);border:1px solid rgba(201,168,76,0.45);padding:40px 26px;margin-bottom:20px;text-align:center;">
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);margin-bottom:14px;">A Camada Oculta</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:16px;">Você descobriu o seu padrão.<br><em style="color:var(--gold-light);">Agora descubra o que ele esconde.</em></h3>
+      <p style="font-size:15px;color:var(--white-dim);line-height:1.8;max-width:420px;margin:0 auto 26px;">Nenhum padrão vive sozinho. Em 35 perguntas novas, você descobre como ele se combina com outros e qual dos 10 perfis híbridos explica as reações que você ainda não entende em si.</p>
+      <a class="btn-unlock" href="camada-oculta.html?p=${encodeURIComponent(profileKey)}&n=${encodeURIComponent(userName)}&e=${encodeURIComponent(userEmail)}${modoDemo ? '&demo=' + DEMO_CHAVE : ''}" style="display:inline-block;text-decoration:none;padding:16px 36px;font-size:12px;letter-spacing:0.2em;">Quero ver a minha Camada Oculta</a>
+      <p style="font-size:11px;color:rgba(200,191,168,0.45);margin-top:12px;">Você responde primeiro e só paga se quiser ver o resultado.</p>
+    </div>
+    <div class="section-sep"></div>
+    ${blocoDiagnostico}`;
+  } else if(unlockedSteps === 1){
+    // Diagnostico Emocional liberado (R$29,90) e oferta do Perfil Predominante (R$49,90)
+    html += `
+    ${blocoDiagnostico}
+    <div style="${estiloOferta}">
+      ${filete}
+      ${selo('Próximo Passo')}
+      ${titulo('Seu Perfil Emocional', 'Predominante')}
+      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 24px;">Descubra qual dos 5 perfis emocionais a sua história construiu: Apego Ansioso, Evitativo, Seguro, Dependência Emocional ou Hiperindependência. Na análise completa, a Dra. Aline Zanette aprofunda de onde vem esse padrão, como ele aparece no seu dia a dia e qual o caminho possível a partir daqui. Você recebe na hora aqui na página, e também por e-mail com uma ilustração exclusiva para o seu perfil.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--white-dim);line-height:1.7;max-width:380px;margin:0 auto 24px;">São <span style="color:var(--gold);font-weight:600;">5 perfis</span> emocionais, e <span style="color:var(--gold);font-weight:600;">um deles é o seu</span>.</p>
+      ${preco('', '49', '90')}
+      <button class="btn-unlock" onclick="abrirCheckout(2)" style="padding:16px 40px;font-size:12px;letter-spacing:0.25em;">Quero Descobrir Meu Perfil</button>
+      ${rodapeOferta}
     </div>
     <div class="section-sep"></div>`;
   } else {
-    // Bloqueado
+    // Nada liberado ainda: so a oferta do Diagnostico Emocional (R$29,90)
     html += `
-    <div style="background:linear-gradient(135deg,rgba(10,10,10,0.95) 0%,rgba(30,22,5,0.98) 100%);border:1px solid rgba(201,168,76,0.45);padding:36px 28px;margin-bottom:20px;position:relative;overflow:hidden;text-align:center;" id="nextLock">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),#fff8e1,var(--gold),transparent);"></div>
-      <div style="display:inline-block;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);padding:5px 16px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Próximo Passo</div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:6px;">Seu Perfil Emocional</h3>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;color:var(--gold);line-height:1.3;margin-bottom:18px;">Predominante</h3>
-      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 24px;">Descubra qual dos 5 perfis emocionais sua história construiu - Apego Ansioso, Evitativo, Seguro, Dependência Emocional ou Hiperindependência.</p>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--white-dim);line-height:1.7;max-width:380px;margin:0 auto 24px;">São <span style="color:var(--gold);font-weight:600;">5 perfis</span> emocionais &mdash; <span style="color:var(--gold);font-weight:600;">um deles é o seu</span>, e ele vai te trazer mais clareza.</p>
-      <div style="margin-bottom:20px;">
-        <div style="font-size:12px;color:rgba(200,191,168,0.5);margin-bottom:6px;">De <s>R$ 47,90</s> por apenas</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;"><small style="font-size:22px;vertical-align:super;">R$</small>29<span style="font-size:32px">,90</span></div>
-      </div>
-      <button class="btn-unlock" onclick="abrirCheckout(1)" style="padding:16px 40px;font-size:12px;letter-spacing:0.25em;">Quero Descobrir Meu Perfil</button>
-      <p style="font-size:11px;color:rgba(200,191,168,0.35);margin-top:12px;">Acesso imediato · Análise personalizada para o seu resultado · Compra segura via Hotmart, garantia de 7 dias</p>
+    <div style="${estiloOferta}" id="nextLock">
+      ${filete}
+      ${selo('Seu Resultado Está Pronto')}
+      ${titulo('Seu Diagnóstico', 'Emocional')}
+      <p style="font-size:14px;color:var(--white-dim);line-height:1.8;max-width:400px;margin:0 auto 24px;">As suas respostas já foram analisadas. Descubra como a sua história pode estar influenciando a forma como você ama, confia e se relaciona hoje.</p>
+      ${preco('R$ 47,90', '29', '90')}
+      <button class="btn-unlock" onclick="abrirCheckout(1)" style="padding:16px 40px;font-size:12px;letter-spacing:0.25em;">Quero Ver Meu Diagnóstico</button>
+      ${rodapeOferta}
     </div>
     <div class="section-sep"></div>`;
   }
+
 
   // POSE CTA
   html += `
@@ -860,6 +872,12 @@ function showResult(){
   goTo('screen-result');
   if (!restaurandoResultado && !modoDemo) saveToSheets(userName, currentLevel.label, totalScore, profileKey);
   try { localStorage.setItem('qvst_state', JSON.stringify({ userName: userName, userEmail: userEmail, totalScore: totalScore, answers: answers, ts: Date.now() })); } catch(e){}
+
+  if(unlockedSteps > 0){
+    const barra = document.getElementById('stickyTimer');
+    if (barra) barra.classList.remove('visible');
+    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+  }
 
   // Timer
   if(unlockedSteps === 0){
