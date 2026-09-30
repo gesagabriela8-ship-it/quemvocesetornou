@@ -394,6 +394,17 @@ button{font-family:inherit}
   var pendente = false;
   try { pendente = sessionStorage.getItem('qvst_pending_tier') === '3' || !!localStorage.getItem('qvst3_pendente'); } catch(e){}
 
+  // Modo demonstracao (para a Dra. gravar os videos): libera o resultado sem Hotmart
+  var DEMO_CHAVE = 'dra-aline-7x3k';
+  var modoDemo = false;
+  try {
+    if (params.get('demo') === DEMO_CHAVE) {
+      sessionStorage.setItem('qvst_demo', '1');
+      delete st.cod; delete st.resp; delete st.pago; localStorage.removeItem('qvst3_timer_fim');
+    }
+    modoDemo = sessionStorage.getItem('qvst_demo') === '1';
+  } catch(e){}
+
   var viaLink = params.get('r') ? L.decodificar(params.get('r')) : null;
   if (viaLink) {
     st.cod = params.get('r'); st.e1 = viaLink.e1 || st.e1; st.pago = true;
@@ -531,6 +542,7 @@ button{font-family:inherit}
     try { fbq('trackCustom', 'CamadaResultadoBloqueado', { tipo: r.tipo }); } catch(e){}
   }
   function checkout(){
+    if (modoDemo) { mostrarResultado(); return; }
     var oferta = precoExpirado() ? OFERTA_CHEIA : OFERTA_ESPECIAL;
     var url = 'https://pay.hotmart.com/' + HOTMART_PRODUTO + '?off=' + oferta + '&checkoutMode=10&sck=' + encodeURIComponent(st.cod);
     if (st.email) url += '&email=' + encodeURIComponent(st.email);
@@ -604,6 +616,13 @@ button{font-family:inherit}
     else if (a === 'voltar') voltar();
     else if (a === 'checkout') checkout();
   });
+
+  if (modoDemo) {
+    var tag = document.createElement('div');
+    tag.textContent = 'Modo demonstração: o pagamento é simulado';
+    tag.style.cssText = 'position:fixed;left:12px;bottom:12px;z-index:9999;background:#8B1E2B;color:#fff;font:500 11px Jost,sans-serif;padding:6px 10px;letter-spacing:.04em;opacity:.9;pointer-events:none;';
+    document.body.appendChild(tag);
+  }
 
   // ---------- inicio ----------
   if (st.pago && st.cod) mostrarResultado();
