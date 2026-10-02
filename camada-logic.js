@@ -5,7 +5,7 @@
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.CamadaLogic = factory();
 })(typeof self !== 'undefined' ? self : this, function () {
-  var VERSAO = 'camada-1.0';
+  var VERSAO = 'camada-1.1';
   var DIMS = ['A', 'V', 'D', 'H', 'S'];
   var DIM_NOMES = {
     A: 'Apego ansioso', V: 'Apego evitativo', D: 'Dependência emocional',
@@ -62,6 +62,15 @@
     return s;
   }
 
+  // A partir da v1.1: a classificacao por patamar (h/m) e a prioridade de grupos
+  // (1 > 2 > 3a > 3b) continuam exatamente como a Dra. Aline desenhou - isso e o
+  // que da peso certo pra quem realmente tem 3 dimensoes elevadas (grupo 1) sobre
+  // quem tem so 2. A unica mudanca: antes, quando NENHUMA das 10 regras batia o
+  // patamar minimo, a pessoa caia no "mapa" de fallback. Agora, nesse caso (e so
+  // nesse caso), em vez do mapa, escolhemos a regra cujas dimensoes exigidas tem a
+  // maior media de pontuacao da pessoa - ou seja, sempre as dimensoes/perfis mais
+  // fortes dela que definem qual dos 10 hibridos ela recebe, mesmo sem bater o
+  // patamar oficial. Isso garante que todo mundo sempre recebe um dos 10 perfis.
   function classificar(s, e1) {
     var dimE1 = E1_DIM[e1] || null;
     for (var gi = 0; gi < GRUPOS.length; gi++) {
@@ -85,7 +94,22 @@
       if (top.length > 1) regra = 'grupo ' + GRUPOS[gi] + ', desempate pela ordem';
       return { tipo: 'perfil', key: top[0].k, regra: regra, versao: VERSAO };
     }
-    return { tipo: 'mapa', key: 'mapa', regra: 'nenhuma combinacao elegivel', versao: VERSAO };
+    // Ninguem bateu patamar: nunca mais cai no mapa - escolhe o melhor encaixe
+    // entre os 10, pela media de pontuacao nas dimensoes que cada regra pede
+    // (media deixa regras de 2 e de 3 dimensoes comparaveis entre si).
+    var media = function (r) {
+      var dims = Object.keys(r.req);
+      return dims.reduce(function (t, d) { return t + s[d]; }, 0) / dims.length;
+    };
+    var maxMedia = Math.max.apply(null, REGRAS.map(media));
+    var topMedia = REGRAS.filter(function (r) { return media(r) === maxMedia; });
+    var regraFinal = 'sem patamar, melhor encaixe (media ' + maxMedia.toFixed(1) + ')';
+    if (topMedia.length > 1 && dimE1) {
+      var ligFinal = topMedia.filter(function (r) { return r.req[dimE1]; });
+      if (ligFinal.length) { topMedia = ligFinal; regraFinal += ', desempate pela etapa 1'; }
+    }
+    if (topMedia.length > 1) regraFinal += ', desempate pela ordem';
+    return { tipo: 'perfil', key: topMedia[0].k, regra: regraFinal, versao: VERSAO };
   }
 
   // Blocos do Mapa Dimensional, na ordem de exibicao
